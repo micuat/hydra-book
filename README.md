@@ -20,3 +20,9 @@ Table of Contents
 * [Colors](colors)
 * [Arithmetic](arithmetic)
 * [Motions](motions)
+
+
+License
+--------
+
+As described in [LICENSE](https://github.com/micuat/hydra-book/blob/master/LICENSE), this repository is under public domain, meaning that all the contents including code snippets can be used freely without any restrictions. Nevertheless, I appreciate if you cite this book if you write about any ideas developed from this book or simply let [me](https://naotohieda.com) know!
