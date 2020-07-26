@@ -29,7 +29,7 @@ lfoInvert = () => solid(1,1,1).add(lfo(), -1)
 shape(3).color(1,0,0).mult(lfo()).add(shape(4).color(0,0,1).mult(lfoInvert()),1).out(o0)
 ```
 
-A similar effect can be achieved by a lambda function:
+A similar effect can be achieved by an arrow function:
 
 ```javascript
 shape(3).color(1,0,0).blend(shape(4).color(0,0,1), () => Math.sin(time) * 0.5 + 0.5).out(o0)
@@ -37,7 +37,7 @@ shape(3).color(1,0,0).blend(shape(4).color(0,0,1), () => Math.sin(time) * 0.5 + 
 
 ![motion-osc-crossfade](images/motion-osc-crossfade.png)
 
-Visually, both examples crossfade the two shapes: a red triangle and a blue square. The key is to understand the difference between these two examples. In the first code, the two shapes are multiplied by `lfo` and `lfoInvert`, which is the inverted texture of `lfo`. This can be thought as an analogy of a layer mask with a uniform transparency in Photoshop. In the second code, a lambda function with `Math.sin` is attached to the second argument of `blend`. This is similar to setting a global opacity of the layer in Photoshop. The latter is more concise and easier to understand. However, it is spatially less flexible because the single transparency is applied to the blending operation of all the pixels. The former can be modified to add spatial oscillation, i.e., a layer mask.
+Visually, both examples crossfade the two shapes: a red triangle and a blue square. The key is to understand the difference between these two examples. In the first code, the two shapes are multiplied by `lfo` and `lfoInvert`, which is the inverted texture of `lfo`. This can be thought as an analogy of a layer mask with a uniform transparency in Photoshop. In the second code, an arrow function with `Math.sin` is attached to the second argument of `blend`. This is similar to setting a global opacity of the layer in Photoshop. The latter is more concise and easier to understand. However, it is spatially less flexible because the single transparency is applied to the blending operation of all the pixels. The former can be modified to add spatial oscillation, i.e., a layer mask.
 
 ```javascript
 lfo = () => osc(2,1,0).pixelate(10,1)
@@ -47,10 +47,10 @@ shape(3).color(1,0,0).mult(lfo()).add(shape(4).color(0,0,1).mult(lfoInvert()),1)
 
 ![motion-osc-crossfade2](images/motion-osc-crossfade2.png)
 
-Beyond image blending, LFOs can be used for other several operations. An example is `pixelate`. To change the argument of `pixelate` in time, one might use a lambda function:
+Beyond image blending, LFOs can be used for other several operations. An example is `pixelate`. To change the argument of `pixelate` in time, one might use an arrow function:
 
 ```javascript
-lfo = () => (Math.sin(time) * 0.5 + 0.5) * 4
+lfo = () => (Math.sin(time) * 0.5 + 0.5) * 4 + 4
 osc(10,0,1).pixelate(lfo,lfo).out(o0)
 ```
 
@@ -70,22 +70,22 @@ osc(10,0,1).modulatePixelate(osc(1,1,0).pixelate(4,1).color(4,4),1).out(o0)
 
 ![motion-osc-pixelate2](images/motion-osc-pixelate2.png)
 
-The downside of the `osc.pixelate` LFO compared to a lambda LFO is that arithmetic operations are cumbersome. To add a value X, one needs to write
+The downside of the `osc.pixelate` LFO compared to an arrow-function LFO is that arithmetic operations are cumbersome and less readable. To add a value X, one needs to write
 
-```javascript
+```clike
 ...add(solid(1,1,1),X)
 ```
 
 And to multiply by Y,
 
-```javascript
+```clike
 ...color(Y,Y,Y)
 ```
 
 Also, such an LFO has fewer mathematical functions. Nevertheless, discretization can be achieved by `thresh` or `posterize`:
 
 ```javascript
-osc(10,0,1).modulatePixelate(osc(1,1,0).pixelate(1,1).posterize(16).color(4,4),1).out(o0)
+osc(10,0,1).modulatePixelate(osc(1,1,0).pixelate(1,1).posterize(16,1).color(4,4),1).out(o0)
 ```
 
 which is similar to `Math.floor`:
@@ -102,4 +102,4 @@ lfo = [1,2,3,4].fast(2)
 osc(10,0,1).pixelate(lfo,lfo).out(o0)
 ```
 
-A screenshot is omitted because a static image would appear similar to the previous example. The same technique can be used in conjunction with other modulation functions such as `modulateScrollX`.
+A screenshot is omitted because a static image would appear similar to the previous example. The same technique can be applied in conjunction with other modulation functions such as `modulateScrollX`.
