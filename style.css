@@ -1,0 +1,37 @@
+body {
+  font-family: 'Chivo', sans-serif;
+  font-weight: 300;
+}
+
+body, .sidebar {
+  background-color: black;
+  color: white;
+}
+
+.markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section strong {
+  color: white;
+  font-weight: 700;
+}
+
+.markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4 {
+  text-transform: uppercase;
+}
+
+.sidebar ul li a {
+  color: white;
+}
+
+.anchor span {
+  color: white;
+}
+
+.markdown-section code, .markdown-section pre {
+  background-color: black;
+  font-family: monospace,courier;
+  border: solid white 2px;
+}
+
+.markdown-section pre > code {
+  background-color: black;
+  border: none;
+}
