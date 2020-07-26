@@ -11,7 +11,8 @@ osc(60,0.1,1).out(o0)
 ```
 
 ![motion-osc](images/motion-osc.png)
-*In this book, the images are static. Please try the code on the Hydra editor to watch the movement.*
+
+In this book, the images are static. Please try the code on the Hydra editor to observe the movement.
 
 The result seems to be scrolling stripes due to the human perception. If we look at an oscillator with a smaller spatial frequency (i.e., to set the first argument small), and take an average of the whole pixels by `pixelate(1,1)`, the color change in time becomes recognizable.
 
