@@ -12,7 +12,7 @@ Oscillator
 osc(40,0).out(o0)
 ```
 
-![osc]({{ site.baseurl }}/assets/images/2019-12-22-hydra-book-osc.png)
+![osc](images/osc.png)
 
 By adding `thresh()` or `posterize()`, the oscillator pattern becomes clear stripes. `pixelate()` can achieve a similar effect; however, with sync parameter, the movement will appear differently.
 
@@ -20,7 +20,7 @@ By adding `thresh()` or `posterize()`, the oscillator pattern becomes clear stri
 osc(40,0).thresh().out(o0)
 ```
 
-![osc-thresh]({{ site.baseurl }}/assets/images/2019-12-22-hydra-book-oscthresh.png)
+![osc-thresh](images/oscthresh.png)
 
 `kaleid()` with a large number creates circles,
 
@@ -28,7 +28,7 @@ osc(40,0).thresh().out(o0)
 osc(200, 0).kaleid(200).out(o0)
 ```
 
-![osc-kaleid]({{ site.baseurl }}/assets/images/2019-12-22-hydra-book-osckaleid.png)
+![osc-kaleid](images/osckaleid.png)
 
 and with a small number it becomes geometric shapes (in the example, an oscillator is combined with `kaleid` and `thresh`).
 
@@ -36,7 +36,7 @@ and with a small number it becomes geometric shapes (in the example, an oscillat
 osc(40,0).thresh().kaleid(3).out(o0)
 ```
 
-![osc-kaleid2]({{ site.baseurl }}/assets/images/2019-12-22-hydra-book-osckaleid2.png)
+![osc-kaleid2](images/osckaleid2.png)
 
 Noise
 --------
@@ -47,7 +47,7 @@ Noise
 noise(10, 0).out(o0)
 ```
 
-![noise]({{ site.baseurl }}/assets/images/2019-12-22-hydra-book-noise.png)
+![noise](images/noise.png)
 
 We will look more into detail in the modulator section.
 
@@ -60,7 +60,7 @@ Voronoi
 voronoi(10, 0).out(o0)
 ```
 
-![voronoi]({{ site.baseurl }}/assets/images/2019-12-22-hydra-book-voronoi.png)
+![voronoi](images/voronoi.png)
 
 Shapes
 --------
@@ -77,7 +77,7 @@ or simply,
 shape(2,0.0025,0).out(o0)
 ```
 
-![line]({{ site.baseurl }}/assets/images/2019-12-22-hydra-book-line.png)
+![line](images/line.png)
 
 By repeating `shape(4)` and overlapping them, it gives a grid-like pattern. For convenience, a parameter and a function are stored in JavaScript variables.
 
@@ -87,7 +87,7 @@ a = () => shape(4,0.4).repeat(n,n)
 a().add(a().scrollX(0.5/n).scrollY(0.5/n),1).out()
 ```
 
-![shapes]({{ site.baseurl }}/assets/images/2019-12-22-hydra-book-shapes.png)
+![shapes](images/shapes.png)
 
 Similar to `kaleid()`, `shape()` with a large number of sides creates a circle. By tweaking the example above, it generates a Polka dot pattern.
 
@@ -105,7 +105,7 @@ a = () => shape(400,0.75).repeat(n,n)
 a().rotate(Math.PI/4).out()
 ```
 
-![polka]({{ site.baseurl }}/assets/images/2019-12-22-hydra-book-polka.png)
+![polka](images/polka.png)
 
 This tiling technique can be used to create a RGB pixel filter. In this example, `func` is decomposed into R, G, and B channels and overlaid on top of each other.
 
@@ -120,7 +120,7 @@ pix().mult(func().color(0,0,1).pixelate(n,n)).scrollX(2/n/3).out(o3)
 solid().add(src(o1),1).add(src(o2),1).add(src(o3),1).out(o0)
 ```
 
-![shapes-rgb]({{ site.baseurl }}/assets/images/2019-12-22-hydra-book-shapesrgb.png)
+![shapes-rgb](images/shapesrgb.png)
 
 Modulator
 --------
@@ -142,7 +142,7 @@ The result (bottom)
 osc(40,0,1).modulate(noise(3,0))
 ```
 
-![oscmod]({{ site.baseurl }}/assets/images/2019-12-22-hydra-book-oscmod.png)
+![oscmod](images/oscmod.png)
 
 We can make a few observations. First, the color of the original image (or modulated image, `osc(40,0,1)`) is preserved. Second, the oscillator is distorted to resemble the pattern of the modulating texture, `noise(3,0)`. Modulators can be seen from two different perspectives. On the one hand, a modulator literally modulates (or distorts) the chained function (`osc` in this example). In this section, we cover this aspect to explore the distortion. On the other hand, it can be seen as a way to paint the modulator function (`noise` in this example). For example, `noise` itself is grayscale, but using it as an argument of a modulator, the noise pattern is painted with, for example, an oscillator or a gradient.
 
@@ -166,7 +166,7 @@ A modulator with a feedback loop keeps *pushing* pixels based on its brightness.
 noise(10, 0).modulate(o0).blend(o0,0.9).out(o0)
 ```
 
-![noise-mod]({{ site.baseurl }}/assets/images/2019-12-22-hydra-book-noisemod.png)
+![noise-mod](images/noisemod.png)
 
 This example uses the same technique on a Voronoi diagram. Similar to above, the resulting image has a fake 3D look.
 
@@ -174,7 +174,7 @@ This example uses the same technique on a Voronoi diagram. Similar to above, the
 voronoi(10, 0).modulate(o0).blend(o0,0.9).out(o0)
 ```
 
-![voronoi-mod]({{ site.baseurl }}/assets/images/2019-12-22-hydra-book-voronoimod.png)
+![voronoi-mod](images/voronoimod.png)
 
 Modulators can be chained to create complex patterns. In the examples above, pixels are pushed based on their brightness but always to the same directions. By normalizing an image from `[0, 1]` to, for example, `[-1, 1]`, pixels are pushed to two opposite directions. This can be achieved by `color(2,2).add(solid(-1,-1))` (notice that only red and green are selected because blue channel is ignored by a modulator).
 
@@ -183,7 +183,7 @@ noise(5,0.0).shift(0.5).modulate(o1,0.1).modulate(src(o1).color(10,10).add(solid
 src(o1).shift(0.5).saturate(0).out(o0)
 ```
 
-![noise-mod2]({{ site.baseurl }}/assets/images/2019-12-22-hydra-book-noisemod2.png)
+![noise-mod2](images/noisemod2.png)
 
 The same technique can be applied to another texture. In this example, a square grid is used, but the second and third arguments of `shape()` is changed to add gradient, which helps modulating an image.
 
@@ -194,7 +194,7 @@ a().add(a().scrollX(0.5/n).scrollY(0.5/n),1).shift(0.5).modulate(o1,0.1).modulat
 src(o1).shift(0.5).saturate(0).out(o0)
 ```
 
-![shapes-mod]({{ site.baseurl }}/assets/images/2019-12-22-hydra-book-shapesmod.png)
+![shapes-mod](images/shapesmod.png)
 
 ### modulateScale
 
@@ -204,7 +204,7 @@ src(o1).shift(0.5).saturate(0).out(o0)
 osc(60,0).modulateScale(osc(8,0)).out(o0)
 ```
 
-![scale-mod]({{ site.baseurl }}/assets/images/2019-12-22-hydra-book-oscmodscale.png)
+![scale-mod](images/oscmodscale.png)
 
 `kaleid` can be added to create a ripple or breathing effect towards or from the center.
 
@@ -212,7 +212,7 @@ osc(60,0).modulateScale(osc(8,0)).out(o0)
 osc(60,0).modulateScale(osc(8,0)).kaleid(400).out(o0)
 ```
 
-![scale-mod-kaleid]({{ site.baseurl }}/assets/images/2019-12-22-hydra-book-oscmodscalekaleid.png)
+![scale-mod-kaleid](images/oscmodscalekaleid.png)
 
 This breathing or ripple texture can be further used for modulating another texture.
 
@@ -220,7 +220,7 @@ This breathing or ripple texture can be further used for modulating another text
 shape(400,0.5).repeat(40,40).modulate(osc(60,0).modulateScale(osc(8,0)).kaleid(400),0.02).out(o0)
 ```
 
-![scale-mod-kaleid-mod]({{ site.baseurl }}/assets/images/2019-12-22-hydra-book-oscmodscalekaleidmod.png)
+![scale-mod-kaleid-mod](images/oscmodscalekaleidmod.png)
 
 Scaling
 --------
@@ -231,7 +231,7 @@ Scaling and difference can also create a periodic texture.
 shape(4,0.8).diff(src(o0).scale(0.9)).out(o0)
 ```
 
-![shape-scale]({{ site.baseurl }}/assets/images/2019-12-22-hydra-book-shapescale.png)
+![shape-scale](images/shapescale.png)
 
 This technique can also be applied to a complex texture.
 
@@ -239,7 +239,7 @@ This technique can also be applied to a complex texture.
 voronoi(10,0).diff(src(o0).scale(0.9)).out(o0)
 ```
 
-![voronoi-scale]({{ site.baseurl }}/assets/images/2019-12-22-hydra-book-voronoiscale.png)
+![voronoi-scale](images/voronoiscale.png)
 
 The effect can be enhanced by `thresh` and setting the third argument of `voronoi` to 0, to have sharp edges. However, a naive implementation will end up in a complete noise.
 
@@ -247,7 +247,7 @@ The effect can be enhanced by `thresh` and setting the third argument of `vorono
 voronoi(10,0,0).thresh(0.5,0).diff(src(o0).scale(0.9)).out(o0)
 ```
 
-![voronoi-scale-fail]({{ site.baseurl }}/assets/images/2019-12-22-hydra-book-voronoiscalefail.png)
+![voronoi-scale-fail](images/voronoiscalefail.png)
 
 To have a desired effect, apply a square mask (before trying the next example, apply `solid().out(o0)` to clear the buffer).
 
@@ -255,7 +255,7 @@ To have a desired effect, apply a square mask (before trying the next example, a
 voronoi(10,0,0).thresh(0.5,0).mask(shape(4,0.8,0)).diff(src(o0).scale(0.9)).out(o0)
 ```
 
-![voronoi-scale-mask]({{ site.baseurl }}/assets/images/2019-12-22-hydra-book-voronoiscalemask.png)
+![voronoi-scale-mask](images/voronoiscalemask.png)
 
 Or, `diff` can be replaced by `add(oX, -1)` to avoid oscillation. The difference between `add` and `diff` is discussed in [Blending](#blending) section.
 
@@ -263,7 +263,7 @@ Or, `diff` can be replaced by `add(oX, -1)` to avoid oscillation. The difference
 voronoi(10,0,0).thresh(0.5,0).add(src(o0).scale(0.9),-1).out(o0)
 ```
 
-![voronoi-scale-mask]({{ site.baseurl }}/assets/images/2019-12-22-hydra-book-voronoiscaleadd.png)
+![voronoi-scale-mask](images/voronoiscaleadd.png)
 
 These examples can be used together with rotation.
 
@@ -271,7 +271,7 @@ These examples can be used together with rotation.
 shape(4,0.9).add(src(o0).scale(0.9).rotate(0.1),-1).out(o0)
 ```
 
-![shape-scale-rotate]({{ site.baseurl }}/assets/images/2019-12-22-hydra-book-shapescalerotate.png)
+![shape-scale-rotate](images/shapescalerotate.png)
 
 Or, instead of `scale`, scrolling functions (`scrollX` and `scrollY`) can be used with a feedback loop.
 
@@ -279,4 +279,4 @@ Or, instead of `scale`, scrolling functions (`scrollX` and `scrollY`) can be use
 shape(4,0.7).add(src(o0).scrollX(0.01),-1).out(o0)
 ```
 
-![shape-scroll]({{ site.baseurl }}/assets/images/2019-12-22-hydra-book-shapescroll.png)
+![shape-scroll](images/shapescroll.png)

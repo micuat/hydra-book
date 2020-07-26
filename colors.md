@@ -10,7 +10,7 @@ Gradient
 gradient(0).out(o0)
 ```
 
-![gradient]({{ site.baseurl }}/assets/images/2019-12-22-hydra-book-gradient.png)
+![gradient](images/gradient.png)
 
 Oscillator
 --------
@@ -21,7 +21,7 @@ With the third argument of `osc()`, an oscillator generates a colored texture.
 osc(10,0,1).out(o0)
 ```
 
-![osc-color]({{ site.baseurl }}/assets/images/2019-12-22-hydra-book-osccolor.png)
+![osc-color](images/osccolor.png)
 
 Color Operations
 --------
@@ -32,7 +32,7 @@ Although not documented, `hue` is a useful function to shift the hue in HSV (hue
 osc(30,0,1).hue(0.5).out(o0)
 ```
 
-![hue]({{ site.baseurl }}/assets/images/2019-12-22-hydra-book-hue.png)
+![hue](images/hue.png)
 
 In contrast, `colorama()` shifts all H, S and V values, implemented as follows:
 
@@ -52,7 +52,7 @@ Therefore, the resulting image is rather unpredictable (for explanation, the top
 osc(30,0,1).colorama(0.01).out(o0)
 ```
 
-![colorama]({{ site.baseurl }}/assets/images/2019-12-22-hydra-book-colorama.png)
+![colorama](images/colorama.png)
 
 This unpredictability is due to the following reasons. In the GLSL snippet above, first, HSV values are increased by `amount`, and after converting back to RGB, the `fract` value is returned. Since `fract` returns the fraction of the value (equivalent to `x % 1` in JavaScript), any values exceeding 1 will wrap to 0, which causes the discontinuity and unpredictable colors. Therefore, one way to make `colorama` effect less harsh is to set negative value as an argument:
 
@@ -60,7 +60,7 @@ This unpredictability is due to the following reasons. In the GLSL snippet above
 osc(30,0,1).colorama(-0.1).out(o0)
 ```
 
-![colorama-negative]({{ site.baseurl }}/assets/images/2019-12-22-hydra-book-colorama-negative.png)
+![colorama-negative](images/colorama-negative.png)
 
 `luma()` masks an image based on the luminosity. Similar to `thresh()`, however, the color of the bright part of the image is preserved. The first argument is for the threshold, and the second is for the tolerance (with bigger tolerance, the boundary becomes blurrier).
 
@@ -68,7 +68,7 @@ osc(30,0,1).colorama(-0.1).out(o0)
 osc(30,0,1).luma(0.5,0).out(o0)
 ```
 
-![luma]({{ site.baseurl }}/assets/images/2019-12-22-hydra-book-luma.png)
+![luma](images/luma.png)
 
 Importantly, `luma()` returns an image with transparency. Therefore, the image can be overlayed to another image.
 
@@ -76,7 +76,7 @@ Importantly, `luma()` returns an image with transparency. Therefore, the image c
 osc(200,0,1).rotate(1).layer(osc(30,0,1).luma(0.5,0)).out(o0)
 ```
 
-![luma-layer]({{ site.baseurl }}/assets/images/2019-12-22-hydra-book-lumalayer.png)
+![luma-layer](images/lumalayer.png)
 
 With the second argument of `luma`, a shadow-like effect can be created. First, turn the texture to grayscale by `saturate(0)`, then use `luma(0.2,0.2)` to create blurred boundaries, and finally `color(0,0,0,1)` to convert grayscale to an alpha mask with black color. In the example, foreground texture `f()` is defined for convenience to avoid duplication for shadow generation and foreground rendering. The shadow texture is overlaid on the background texture `osc(200,0,1)` and then the foreground texture `f()` is overlaid on the shadow texture.
 
@@ -85,7 +85,7 @@ f=()=>osc(30,0,1)
 osc(200,0,1).rotate(1).layer(f().saturate(0).luma(0.2,0.2).color(0,0,0,1)).layer(f().luma(0.5,0)).out(o0)
 ```
 
-![luma-shadow]({{ site.baseurl }}/assets/images/2019-12-22-hydra-book-luma-shadow.png)
+![luma-shadow](images/luma-shadow.png)
 
 Color Remapping
 --------
@@ -106,11 +106,11 @@ func=()=>osc(20,0,0).modulate(noise(4,0))
 colorize(func,url).out()
 ```
 
-![color remapping]({{ site.baseurl }}/assets/images/2019-12-22-hydra-book-color-remapping.png)
+![color remapping](images/color-remapping.png)
 
 While the example code is long, in a nutshell, the input grayscale texture defined by `func` is separated into 5 layers based on the intensity, and each layer is recolored by the hexadecimal number specified in coolors URL. The GIF animation below shows each layer recolored for explanation. At the end, these layers are overlaid on top of each other to produce the final texture (above).
 
-![color remapping animation]({{ site.baseurl }}/assets/images/2019-12-22-hydra-book-color-remapping-animation.gif)
+![color remapping animation](images/color-remapping-animation.gif)
 
 Feedback
 --------
@@ -121,5 +121,5 @@ A feedback loop can be used to create unexpected color effects. For example, bas
 shape(4,0.7,0).add(src(o0).scrollX(0.01).scrollY(0.01).color(1,1,0).hue(0.1),-1).out(o0)
 ```
 
-![color-feedback]({{ site.baseurl }}/assets/images/2019-12-22-hydra-book-colorfeedback.png)
+![color-feedback](images/colorfeedback.png)
 

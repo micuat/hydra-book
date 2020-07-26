@@ -14,7 +14,7 @@ func = () => noise(4,0)
 solid(1,0,0).layer(func().luma(-epsilon,0)).out(o0)
 ```
 
-![arithmetic-noise]({{ site.baseurl }}/assets/images/2019-12-22-hydra-book-arithmeticnoise.png)
+![arithmetic-noise](images/arithmeticnoise.png)
 
 `noise` can be normalized to 0-1 by the following method:
 
@@ -22,7 +22,7 @@ solid(1,0,0).layer(func().luma(-epsilon,0)).out(o0)
 solid(0.5,0.5,0.5).add(noise(10,0),0.5).out(o0)
 ```
 
-![arithmetic-noise]({{ site.baseurl }}/assets/images/2019-12-22-hydra-book-arithmeticnormalnoise.png)
+![arithmetic-noise](images/arithmeticnormalnoise.png)
 
 Blending
 --------
@@ -43,7 +43,7 @@ solid(0.5,0.5,0.5).add(osc(40,0,1),-1).out(o2)
 src(o1).mask(shape(2,0.5,0.001).scrollY(0.25)).add(src(o2).mask(shape(2,0.5,0.001).scrollY(-0.25)), 1).out(o0)
 ```
 
-![arithmetic-noise]({{ site.baseurl }}/assets/images/2019-12-22-hydra-book-arithmeticadd.png)
+![arithmetic-noise](images/arithmeticadd.png)
 
 Another confusing blending functions are `mult` and `mask`. On Hydra interface, the result might appear the same; however, they treat the alpha channel differently. First, `mult` simply multiplies the color values of two textures. Each channel, R, G, B and A are treated independently. Therefore, the alpha channel of the resulting image in the example below remains 1 (note that both `osc` and `shape` return opaque textures), and the texture underneath cannot be seen.
 
@@ -51,7 +51,7 @@ Another confusing blending functions are `mult` and `mask`. On Hydra interface, 
 osc(10,0,1).hue(0.5).layer(osc(10,0,1).mult(shape(4,0.5,0))).out()
 ```
 
-![mult]({{ site.baseurl }}/assets/images/2019-12-22-hydra-book-arithmeticmult.png)
+![mult](images/arithmeticmult.png)
 
 Contrarily, `mask` only uses the luminance of the mask texture. The returned texture is not only the multiplication of the masked texture and the luminance of mask, the alpha channel is overwritten by the luminance of mask. Therefore, the returned texture can be overlaid on another texture by `layer`.
 
@@ -59,7 +59,7 @@ Contrarily, `mask` only uses the luminance of the mask texture. The returned tex
 osc(10,0,1).hue(0.5).layer(osc(10,0,1).mask(shape(4,0.5,0))).out()
 ```
 
-![mask]({{ site.baseurl }}/assets/images/2019-12-22-hydra-book-arithmeticmask.png)
+![mask](images/arithmeticmask.png)
 
 With `mult`, a similar effect can be obtained by using `luma` to modify the alpha channel. In this example, the resulting image is the same; however, with a grayscale texture, the result depends on the arguments of `luma`.
 
