@@ -148,7 +148,7 @@ We can make a few observations. First, the color of the original image (or modul
 
 Here is a pseudocode of `A.modulate(B, amount)` producing `ANew`. This might be helpful if you are already familiar with coding environments such as Processing and openFrameworks.
 
-{% highlight c %}
+```clike
 Pixel[][] A;
 Pixel[][] B;
 Pixel[][] ANew;

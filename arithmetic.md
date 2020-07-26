@@ -29,7 +29,7 @@ Blending
 
 This example shows the difference between `add` and `diff`. `add(oX, -1)` might seem to be identical to `diff(oX)`. Although `add` simply adds the texture (the first argument) multiplied by a scalar (the second argument), `diff` first takes a difference of two textures and returns absolute values. Note that `diff` only takes one argument, and the resulting alpha value (transparency) is the maximum value between two values.
 
-{% highlight glsl %}
+```clike
 vec4 diff(vec4 c0, vec4 c1){
   return vec4(abs(c0.rgb-c1.rgb), max(c0.a, c1.a));
 }

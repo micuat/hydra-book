@@ -29,9 +29,33 @@ body, .sidebar {
   background-color: black;
   font-family: monospace,courier;
   border: solid white 2px;
+  color: #99cc99;
 }
 
 .markdown-section pre > code {
+  color: #99cc99;
   background-color: black;
   border: none;
+}
+
+.token.function {
+  color: #99cc99;
+}
+.token.number {
+  color: #a16a94;
+}
+.token.punctuation {
+  color: #cccccc;
+}
+.token.operator {
+  color: #cccccc;
+}
+.token.parameter {
+  color: #f99157;
+}
+.token.keyword {
+  color: #f2777a;
+}
+.token.string {
+  color: #ffcc66;
 }

@@ -36,7 +36,7 @@ osc(30,0,1).hue(0.5).out(o0)
 
 In contrast, `colorama()` shifts all H, S and V values, implemented as follows:
 
-```glsl
+```clike
 vec4 colorama(vec4 c0, float amount){
   vec3 c = _rgbToHsv(c0.rgb);
   c += vec3(amount);
