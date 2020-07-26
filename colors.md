@@ -28,13 +28,21 @@ Color Operations
 
 ### hue
 
-Although not documented, `hue` is a useful function to shift the hue in HSV (hue, saturation, value) color space. The saturation and brightness of the color are preserved, and only the hue is affected.
+Although not documented, `hue(hue)` is a useful function to shift the hue in HSV (hue, saturation, value) color space. The saturation and brightness of the color are preserved, and only the hue is affected.
 
 ```javascript
 osc(30,0,1).hue(0.5).out(o0)
 ```
 
 ![hue](images/hue.png)
+
+`hue()` is often useful to combine with feedback. In this example, `o0` is gradually modulated and its hue is shifted at the same time.
+
+```javascript
+src(o0).modulateRotate(noise(2,0),0.03).hue(0.003).layer(shape(2,0.125).luma().color(0,0,1)).out(o0)
+```
+
+![hue feedback](images/huefeedback.png)
 
 ### colorama
 
