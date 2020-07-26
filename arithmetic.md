@@ -19,10 +19,23 @@ solid(1,0,0).layer(func().luma(-epsilon,0)).out(o0)
 `noise` can be normalized to 0-1 by the following method:
 
 ```javascript
-solid(0.5,0.5,0.5).add(noise(10,0),0.5).out(o0)
+solid(0.5,0.5,0.5).add(noise(4,0),0.5).out(o0)
 ```
 
 ![arithmetic-noise](images/arithmeticnormalnoise.png)
+
+Note that there are few conditions that negative values are clipped to 0. Not only `thresh()` and `luma()`, writing to a layer clips values below 0. In this example, `o1` (bottom left) is the desired result as `func` is evaluated as `noise` function, but `o2` (top right) shows saturation as layer `o0` does not contain negative values.
+
+```javascript
+epsilon=0.001
+func = () => noise(4,0)
+func().out(o0)
+solid(0.5,0.5,0.5).add(func(),0.5).out(o1)
+solid(0.5,0.5,0.5).add(o0,0.5).out(o2)
+render()
+```
+
+![arithmetic-noise layer](images/arithmeticnormalnoiselayer.png)
 
 Blending
 --------
@@ -48,7 +61,7 @@ src(o1).mask(shape(2,0.5,0.001).scrollY(0.25)).add(src(o2).mask(shape(2,0.5,0.00
 Another confusing blending functions are `mult` and `mask`. On Hydra interface, the result might appear the same; however, they treat the alpha channel differently. First, `mult` simply multiplies the color values of two textures. Each channel, R, G, B and A are treated independently. Therefore, the alpha channel of the resulting image in the example below remains 1 (note that both `osc` and `shape` return opaque textures), and the texture underneath cannot be seen.
 
 ```javascript
-osc(10,0,1).hue(0.5).layer(osc(10,0,1).mult(shape(4,0.5,0))).out()
+osc(10,0,1).hue(0.5).layer(osc(10,0,1).mult(shape(4,0.5,0.001))).out()
 ```
 
 ![mult](images/arithmeticmult.png)
@@ -56,7 +69,7 @@ osc(10,0,1).hue(0.5).layer(osc(10,0,1).mult(shape(4,0.5,0))).out()
 Contrarily, `mask` only uses the luminance of the mask texture. The returned texture is not only the multiplication of the masked texture and the luminance of mask, the alpha channel is overwritten by the luminance of mask. Therefore, the returned texture can be overlaid on another texture by `layer`.
 
 ```javascript
-osc(10,0,1).hue(0.5).layer(osc(10,0,1).mask(shape(4,0.5,0))).out()
+osc(10,0,1).hue(0.5).layer(osc(10,0,1).mask(shape(4,0.5,0.001))).out()
 ```
 
 ![mask](images/arithmeticmask.png)
@@ -64,6 +77,6 @@ osc(10,0,1).hue(0.5).layer(osc(10,0,1).mask(shape(4,0.5,0))).out()
 With `mult`, a similar effect can be obtained by using `luma` to modify the alpha channel. In this example, the resulting image is the same; however, with a grayscale texture, the result depends on the arguments of `luma`.
 
 ```javascript
-osc(10,0,1).hue(0.5).layer(osc(10,0,1).mult(shape(4,0.5,0).luma(0.5,0))).out()
+osc(10,0,1).hue(0.5).layer(osc(10,0,1).mult(shape(4,0.5,0.001).luma(0.5,0.001))).out()
 ```
 
