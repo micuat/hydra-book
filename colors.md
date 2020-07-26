@@ -18,13 +18,15 @@ Oscillator
 With the third argument of `osc()`, an oscillator generates a colored texture.
 
 ```javascript
-osc(10,0,1).out(o0)
+osc(30,0,1).out(o0)
 ```
 
 ![osc-color](images/osccolor.png)
 
 Color Operations
 --------
+
+### hue
 
 Although not documented, `hue` is a useful function to shift the hue in HSV (hue, saturation, value) color space. The saturation and brightness of the color are preserved, and only the hue is affected.
 
@@ -33,6 +35,8 @@ osc(30,0,1).hue(0.5).out(o0)
 ```
 
 ![hue](images/hue.png)
+
+### colorama
 
 In contrast, `colorama()` shifts all H, S and V values, implemented as follows:
 
@@ -49,7 +53,9 @@ vec4 colorama(vec4 c0, float amount){
 Therefore, the resulting image is rather unpredictable (for explanation, the top part shows the original image (oscillator) and the bottom shows colorama-ed result).
 
 ```javascript
-osc(30,0,1).colorama(0.01).out(o0)
+osc(30,0,1).out(o0)
+osc(30,0,1).colorama(0.01).out(o1)
+render()
 ```
 
 ![colorama](images/colorama.png)
@@ -62,10 +68,12 @@ osc(30,0,1).colorama(-0.1).out(o0)
 
 ![colorama-negative](images/colorama-negative.png)
 
-`luma()` masks an image based on the luminosity. Similar to `thresh()`, however, the color of the bright part of the image is preserved. The first argument is for the threshold, and the second is for the tolerance (with bigger tolerance, the boundary becomes blurrier).
+### luma
+
+`luma(threshold,tolerance)` masks an image based on the luminosity. Similar to `thresh()`, however, the color of the bright part of the image is preserved. `threshold` is for the threshold, and `tolerance` sets the blurriness (with bigger tolerance, the boundary becomes blurrier, and same as `threshold`, the value cannot be 0).
 
 ```javascript
-osc(30,0,1).luma(0.5,0).out(o0)
+osc(30,0,1).luma(0.5,0.01).out(o0)
 ```
 
 ![luma](images/luma.png)
@@ -73,7 +81,7 @@ osc(30,0,1).luma(0.5,0).out(o0)
 Importantly, `luma()` returns an image with transparency. Therefore, the image can be overlayed to another image.
 
 ```javascript
-osc(200,0,1).rotate(1).layer(osc(30,0,1).luma(0.5,0)).out(o0)
+osc(200,0,1).rotate(1).layer(osc(30,0,1).luma(0.5,0.01)).out(o0)
 ```
 
 ![luma-layer](images/lumalayer.png)
@@ -82,7 +90,7 @@ With the second argument of `luma`, a shadow-like effect can be created. First, 
 
 ```javascript
 f=()=>osc(30,0,1)
-osc(200,0,1).rotate(1).layer(f().saturate(0).luma(0.2,0.2).color(0,0,0,1)).layer(f().luma(0.5,0)).out(o0)
+osc(200,0,1).rotate(1).layer(f().saturate(0).luma(0.2,0.2).color(0,0,0,1)).layer(f().luma(0.5,0.01)).out(o0)
 ```
 
 ![luma-shadow](images/luma-shadow.png)
@@ -94,7 +102,7 @@ The above examples give "video synthesizer" like colors. But what if you want to
 
 ```javascript
 DD=0.01
-b=(o,u,i,y,z)=>o().add(solid(1,1,1),DD).thresh(i*0.2*(z-y)+y,0).luma(0.5,0).color(c(u,i,0),c(u,i,1),c(u,i,2))
+b=(o,u,i,y,z)=>o().add(solid(1,1,1),DD).thresh(i*0.2*(z-y)+y,0.0001).luma(0.5,0.0001).color(c(u,i,0),c(u,i,1),c(u,i,2))
 c=(u,i,j)=>{
   let cc = u.split("/"), cs = cc[cc.length - 1].split("-")
   return parseInt("0x" + cs[i].substring(2*j, 2+2*j))/255
@@ -112,7 +120,7 @@ While the example code is long, in a nutshell, the input grayscale texture defin
 
 ![color remapping animation](images/color-remapping-animation.gif)
 
-Feedback
+<!-- Feedback
 --------
 
 A feedback loop can be used to create unexpected color effects. For example, based on an example from [Scaling](#scaling), a periodic color texture can be generated.
@@ -121,5 +129,5 @@ A feedback loop can be used to create unexpected color effects. For example, bas
 shape(4,0.7,0).add(src(o0).scrollX(0.01).scrollY(0.01).color(1,1,0).hue(0.1),-1).out(o0)
 ```
 
-![color-feedback](images/colorfeedback.png)
+![color-feedback](images/colorfeedback.png) -->
 
