@@ -8,7 +8,7 @@ Oscillator
 
 `osc()` is one of the basic sources to create a texture. The first argument determines the frequency (i.e., how packed the stripes are), the second for the sync (i.e., the scroll speed), and the third for the offset, which adds color to the pattern (if you are curious, one cycle of an oscillator in the screen space can be achieved by `osc(Math.PI * 2)`).
 
-```javascript
+```hydra
 osc(40,0).out(o0)
 ```
 
@@ -18,7 +18,7 @@ By adding `thresh()` or `posterize()`, the oscillator pattern becomes clear stri
 
 (`render()` displays four buffers; `o0` on top left, `o1` on bottom left, `o2` on top right and `o3` on bottom right)
 
-```javascript
+```hydra
 osc(40,0).out(o0)
 src(o0).thresh().out(o1)
 src(o0).posterize(3,1).out(o2)

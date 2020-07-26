@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Document</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="description" content="Description">
-  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <link href="https://fonts.googleapis.com/css?family=Chivo:300,400,700" rel="stylesheet">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/lib/themes/vue.css">
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <div id="app"></div>
   <script>
@@ -17,9 +20,36 @@
       loadSidebar: true,
       subMaxLevel: 2,
       name: '',
-      repo: ''
+      repo: '',
+      plugins: [
+        // https://github.com/baku89/glisp/blob/master/docs/index.html
+        function (hook, vm) {
+          hook.afterEach((html, next) => {
+            html = html.replace(
+              /data-lang="hydra"/gi,
+              'data-lang="javascript" class="hydra-code"'
+            )
+            next(html)
+          })
+
+          hook.doneEach(() => {
+            const codeBlocks = document.querySelectorAll('pre.hydra-code')
+
+            codeBlocks.forEach((preEl) => {
+              const parentEl = preEl.parentElement
+              const codeEl = preEl.firstChild
+
+              const linkEl = document.createElement('p')
+              linkEl.innerHTML = `<a href="https://hydra.ojack.xyz/?code=${window.btoa(codeEl.textContent)}" target="_blank"><img src="symbols/external.png" width="12pt" height="12pt" style="margin-left: 4px; margin-right: 4px">open in editor</a>`;
+
+              preEl.insertAdjacentElement('afterend', linkEl)
+            })
+          })
+        },
+      ]
     }
   </script>
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
 </body>
+
 </html>
