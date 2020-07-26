@@ -26,7 +26,7 @@
         function (hook, vm) {
           hook.afterEach((html, next) => {
             html = html.replace(
-              /data-lang="hydra"/gi,
+              /data-lang="javascript"/gi,
               'data-lang="javascript" class="hydra-code"'
             )
             next(html)

@@ -8,17 +8,17 @@ Oscillator
 
 `osc()` is one of the basic sources to create a texture. The first argument determines the frequency (i.e., how packed the stripes are), the second for the sync (i.e., the scroll speed), and the third for the offset, which adds color to the pattern (if you are curious, one cycle of an oscillator in the screen space can be achieved by `osc(Math.PI * 2)`).
 
-```hydra
+```javascript
 osc(40,0).out(o0)
 ```
 
-[![osc](images/osc.png)](https://hydra.ojack.xyz/?code=b3NjKDQwJTJDMCkub3V0KG8wKQ==)
+![osc](images/osc.png)
 
-By adding `thresh()` or `posterize()`, the oscillator pattern becomes clear stripes. `thresh(threshold)` literally thresholds the grayscale value; if the pixel's grayscale is brighter than `threshold`, returns white and else returns black (alpha is preserved). `posterize(bins,gamma)` thresholds with multiple steps, similar to histogram. `pixelate()` achieves a similar effect; however, if the offset between the bumps of the oscillator and the pixelation bins can create artifacts.
+By adding `thresh()` or `posterize()`, the oscillator pattern becomes clear stripes. `thresh(threshold)` literally thresholds the grayscale value; if the pixel's grayscale is brighter than `threshold`, returns white and else returns black (alpha is preserved). `posterize(bins,gamma)` thresholds with multiple steps, similar to histogram. `pixelate()` achieves a similar effect; however, the offset between the bumps of the oscillator and the pixelation bins can create artifacts.
 
 (`render()` displays four buffers; `o0` on top left, `o1` on bottom left, `o2` on top right and `o3` on bottom right)
 
-```hydra
+```javascript
 osc(40,0).out(o0)
 src(o0).thresh().out(o1)
 src(o0).posterize(3,1).out(o2)
@@ -26,7 +26,7 @@ src(o0).pixelate(20, 20).out(o3)
 render()
 ```
 
-[![osc-thresh](images/oscthresh.png)](https://hydra.ojack.xyz/?code=b3NjKDQwJTJDMCkub3V0KG8wKSUwQXNyYyhvMCkudGhyZXNoKCkub3V0KG8xKSUwQXNyYyhvMCkucG9zdGVyaXplKDMlMkMxKS5vdXQobzIpJTBBc3JjKG8wKS5waXhlbGF0ZSgyMCUyQyUyMDIwKS5vdXQobzMpJTBBcmVuZGVyKCklMEE=)
+![osc-thresh](images/oscthresh.png)
 
 `kaleid()` with a large number creates circles,
 
