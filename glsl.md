@@ -6,6 +6,38 @@ setFunction
 
 A custom GLSL function can be defined using `setFunction()`. The structure follows the format of [builtin functions](https://github.com/ojack/hydra-synth/blob/master/src/glsl/glsl-functions.js). Defining a custom GLSL function does not mean that you are allowed to design an arbitrary function; the function has to have specific inputs and an output, based on its type. The types are `src` `color` `combine` `combineCoords`.
 
+
+Chroma Key
+--------
+
+This example modifies `color` to replace green background with transparency (i.e., chroma keying). The GLSL code is ported from [Inigo Quilez's example](https://www.shadertoy.com/view/XsfGzn).
+
+```javascript
+setFunction({
+  name: 'chroma',
+  type: 'color',
+  inputs: [
+    ],
+  glsl: `
+   float maxrb = max( _c0.r, _c0.b );
+   float k = clamp( (_c0.g-maxrb)*5.0, 0.0, 1.0 );
+   float dg = _c0.g; 
+   _c0.g = min( _c0.g, maxrb*0.8 ); 
+   _c0 += vec4(dg - _c0.g);
+   return vec4(_c0.rgb, 1.0 - k);
+`})
+
+// s0.initCam()
+// src(s0).out(o0)
+solid(0,1,0).layer(shape(5,0.3,0.3).luma()).out(o0)
+osc(30, 0, 1).layer(src(o0).chroma()).out(o1)
+render()
+```
+![glsl chroma key](images/glslchroma.png)
+
+Ray Marching
+--------
+
 In this example, a simple ray marching is implemented as a `coord` function, which literally modifies the coordinates, to map incoming texture to a sphere.
 
 ```javascript
