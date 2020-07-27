@@ -8,6 +8,12 @@ body, .sidebar {
   color: white;
 }
 
+p > img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .markdown-section em {
   color: #cccccc;
 }
