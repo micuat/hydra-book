@@ -24,12 +24,12 @@ If you are already familiar with Hydra, I hope reading this book gives you some 
 Table of Contents
 --------
 
-* [Textures](textures)
-* [Modulation](modulation)
-* [Colors](colors)
-* [Arithmetic](arithmetic)
-* [Motions](motions)
-* [Custom GLSL](glsl)
+* [Textures](textures#textures)
+* [Modulation](modulation#modulation)
+* [Colors](colors#colors)
+* [Arithmetic](arithmetic#arithmetic)
+* [Motions](motions#motions)
+* [Custom GLSL](glsl#custom-glsl)
 
 
 License
