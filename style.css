@@ -8,6 +8,19 @@ body, .sidebar {
   color: white;
 }
 
+.external {
+  width: 12pt;
+  height: 12pt;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+.openin {
+  text-align: right;
+  width: 100%;
+  display: block;
+}
+
 p > img {
   display: block;
   margin-left: auto;

@@ -40,7 +40,7 @@
               const codeEl = preEl.firstChild
 
               const linkEl = document.createElement('p')
-              linkEl.innerHTML = `<a href="https://hydra.ojack.xyz/?code=${btoa(encodeURIComponent(codeEl.textContent))}" target="_blank"><img src="symbols/external.png" width="12pt" height="12pt" style="margin-left: 4px; margin-right: 4px">open in editor</a>`;
+              linkEl.innerHTML = `<a href="https://hydra.ojack.xyz/?code=${btoa(encodeURIComponent(codeEl.textContent))}" target="_blank" class="openin"><img src="symbols/external.png" class="external">open in editor</a>`;
 
               preEl.insertAdjacentElement('afterend', linkEl)
             })
