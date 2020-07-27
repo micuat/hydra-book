@@ -1,6 +1,8 @@
 Hydra Book
 ========
 
+![noise-modhue](images/noisemodhue.png)
+
 Preface
 --------
 

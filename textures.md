@@ -154,6 +154,8 @@ render()
 
 We can see this from two perspectives. First, the color of the original image (or modulated image, `osc(40,0,1)`) is preserved. Second, the oscillator is distorted to resemble the pattern of the modulating texture, `noise(3,0)`. Modulators can be seen from two different perspectives. On the one hand, a modulator literally modulates (or distorts) the chained function (`osc` in this example). In this section, we cover this aspect to explore the distortion. On the other hand, it can be seen as a way to paint the modulator function (`noise` in this example). For example, `noise` itself is grayscale, but using it as an argument of a modulator, the noise pattern is painted with, for example, an oscillator or a gradient.
 
+### modulate
+
 Here is a pseudocode of `A.modulate(B, amount)` producing `ANew`. This might be helpful if you are already familiar with coding environments such as Processing and openFrameworks.
 
 ```clike
@@ -217,6 +219,23 @@ render()
 
 ![noise-mod2-posterize](images/noisemod2posterize.png)
 
+### modulateHue
+
+`modulateHue(src,amount)` behaves similar to `modulate()`; however, the pixel shift can happen to negative directions and also it uses blue channel (however, it does not use hue values as the name suggests):
+
+```clike
+return _st + (vec2(_c0.g - _c0.r, _c0.b - _c0.g) * amount * 1.0/resolution);
+```
+
+```javascript
+shape(4,0.5).out(o0)
+osc(10,0,1).modulate(noise(2,0),0.5).hue(-0.1).out(o1)
+src(o2).modulateHue(o1,8).blend(o0,0.01).out(o2)
+src(o2).luma(0.3,0.3).mult(o1).out(o3)
+render()
+```
+
+![noise-modhue](images/noisemodhue.png)
 
 ### modulateScale
 
