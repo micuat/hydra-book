@@ -28,6 +28,7 @@ Table of Contents
 * [Colors](colors)
 * [Arithmetic](arithmetic)
 * [Motions](motions)
+* [Custom GLSL](glsl)
 
 
 License
