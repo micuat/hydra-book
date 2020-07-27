@@ -74,22 +74,28 @@ osc(10,0,1).modulatePixelate(osc(1,1,0).pixelate(4,1).color(4,4),1).out(o0)
 The downside of the `osc.pixelate` LFO compared to an arrow-function LFO is that arithmetic operations are cumbersome and less readable. To add a value X, one needs to write
 
 ```clike
+...brightness(X)
+```
+
+or
+
+```clike
 ...add(solid(1,1,1),X)
 ```
 
-And to multiply by Y,
+Note that default multiplier of `add()` is 0.5. And to multiply by Y,
 
 ```clike
 ...color(Y,Y,Y)
 ```
 
-Also, such an LFO has fewer mathematical functions. Nevertheless, discretization can be achieved by `thresh` or `posterize`:
+Also, discretization can be achieved by `thresh()` for binary and `posterize()` for histogram (whose second argument sets gamma, so set it to `1` to achieve binning in a linear space) :
 
 ```javascript
 osc(10,0,1).modulatePixelate(osc(1,1,0).pixelate(1,1).posterize(16,1).color(4,4),1).out(o0)
 ```
 
-which is similar to `Math.floor`:
+An analogy in math functions is `Math.floor`:
 
 ```javascript
 lfo = () => Math.floor((Math.sin(time) * 0.5 + 0.5) * 4 * 16) / 16
