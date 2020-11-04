@@ -141,18 +141,47 @@ Pixel[][] ANew; // remapped texture
 for(int y = 0; y < height; y++) {
   for(int x = 0; x < width; x++) {
     Pixel b = B[y][x];
-    ANew[y][x] = A[y + b.green * amount][x + b.red * amount];
+    ANew[y][x] = A[y + b.green][x + b.red];
   }  
 }
 ```
 
-For color remapping, we need to achieve
+For simplicity, modulation `amount` is set to 1. For color remapping, we need to map `B`'s color value (0 - 1) to `A`'s x value (0 - 1). Therefore,
 
 ```clike
     ANew[y][x] = A[0][b.red];
 ```
 
-assuming that b.red == b.green == b.blue. To do so, we need to cancel out `x` and `y` in the array indices. `gradient` with default parameter directly maps the pixel position to red and green. Given that Hydra uses normalized coordinates (x=0, y=0 at the top left, x=1, y=1 at the bottom right), `add(gradient(), -1)` will result in `-x` and `-y`; therefore, with modulation amount 1, we can achieve the second code snippet.
+assuming that b.red == b.green == b.blue. To do so, we need to cancel out `x` and `y` in the array indices; we need the modulator `B`'s values to be
+
+```clike
+b.red = -x + b.red;
+b.green = -y;
+```
+
+`gradient` with default parameter directly maps the pixel position to red and green. Given that Hydra uses normalized coordinates (x=0, y=0 at the top left, x=1, y=1 at the bottom right), `add(gradient(), -1)` will result in `-x` and `-y`; therefore, with modulation `amount` 1, we can achieve the second code snippet.
+
+Technically, the example above will sample the palette diagonally from the top left to the bottom right. This becomes a problem if the palette texture has variation in y direction, such as `gradient()`:
+
+```javascript
+gradient().modulate(noise(3,0).add(gradient(),-1),1).out(o0)
+```
+
+![color-palette-gradient-bad](images/color-palette-gradient-bad.png)
+
+If you want to want to sample in the center of the palette at y=0.5, one way is to do arithmetic operations:
+
+```javascript
+gradient().modulate(noise(3,0).color(1,0,0).add(solid(0,0.5)).add(gradient(),-1),1).out(o0)
+```
+
+![color-palette-gradient-good](images/color-palette-gradient-good.png)
+
+However, an easier way is to stretch the palette in the y axis using `scale()`:
+
+```javascript
+gradient().scale(1,1,1000).modulate(noise(3,0).add(gradient(),-1),1).out(o0)
+```
 
 In some environments, you may need to add `color(0.99,0.99,0.99)` to the intensity texture to avoid texture wrapping.
 
