@@ -106,7 +106,59 @@ osc(200,0,1).rotate(1).layer(f().saturate(0).luma(0.2,0.2).color(0,0,0,1)).layer
 Color Remapping
 --------
 
-The above examples give "video synthesizer" like colors. But what if you want to use colors from a palette, for example, specified by RGB hexadecimal numbers? In the next example, a grayscale texture is re-colored by a palette taken from [coolors.co](https://coolors.co).
+The above examples give "video synthesizer" like colors. But what if you want to use colors from a palette, for example, specified by RGB hexadecimal numbers? In the next example, a grayscale texture is re-colored in several methods.
+
+### Mapping intensity to palette
+
+The first method attempts to map grayscale (intensity) texture to a palette, or a color scheme.
+
+```javascript
+osc(Math.PI*2,0,2).modulate(noise(3,0).add(gradient(),-1),1).out(o0)
+```
+
+![color-palette](images/color-palette.png)
+
+Let's break this one-liner to four buffers for explanation.
+
+```javascript
+noise(3,0).out(o0)
+src(o0).add(gradient(),-1).out(o1)
+osc(Math.PI*2,0,2).out(o2)
+src(o2).modulate(noise(3,0).add(gradient(),-1),1).out(o3)
+render()
+```
+
+![color-palette-buffers](images/color-palette-buffers.png)
+
+The first buffer `o0` is the grayscale image to be remapped (in fact, as explained earlier, `noise` outputs [-1 1] instead of [0 1]). As the second buffer is complicated, we skip this; the third buffer `o2` (top right) is the new palette. In this example, an oscillator is used to make a smooth gradient. Black color in `o0` will be mapped to the pixels on the left, and white to the pixels in the right. The fourth buffer is the result.
+
+The second buffer is used as the "modulator". In the screenshot (bottom left), it appears blank. You may wonder why add gradient, and with the second argument -1. Let's take a look at the code snippet from [modulation](modulation#modulation) chapter.
+
+```clike
+Pixel[][] A; // palette
+Pixel[][] B; // intensity
+Pixel[][] ANew; // remapped texture
+for(int y = 0; y < height; y++) {
+  for(int x = 0; x < width; x++) {
+    Pixel b = B[y][x];
+    ANew[y][x] = A[y + b.green * amount][x + b.red * amount];
+  }  
+}
+```
+
+For color remapping, we need to achieve
+
+```clike
+    ANew[y][x] = A[0][b.red];
+```
+
+assuming that b.red == b.green == b.blue. To do so, we need to cancel out `x` and `y` in the array indices. `gradient` with default parameter directly maps the pixel position to red and green. Given that Hydra uses normalized coordinates (x=0, y=0 at the top left, x=1, y=1 at the bottom right), `add(gradient(), -1)` will result in `-x` and `-y`; therefore, with modulation amount 1, we can achieve the second code snippet.
+
+In some environments, you may need to add `color(0.99,0.99,0.99)` to the intensity texture to avoid texture wrapping.
+
+### Using coolors
+
+Here, we use a palette taken from [coolors.co](https://coolors.co).
 
 ```javascript
 DD=0.01
