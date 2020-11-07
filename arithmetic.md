@@ -80,3 +80,24 @@ With `mult`, a similar effect can be obtained by using `luma` to modify the alph
 osc(10,0,1).hue(0.5).layer(osc(10,0,1).mult(shape(4,0.5,0.001).luma(0.5,0.001))).out()
 ```
 
+<!--
+reaction diffusion
+
+```javascript
+blur = (o)=>{
+  let pt=0.0015,rt=0, n=16, ph=Math.PI*2/n
+  let s=solid(0), t=Math.random()*ph
+  for(let i=0;i<n;i++){
+    x=Math.cos(t+i*ph),y=Math.sin(t+i*ph)
+    s=s.add(src(o).scrollX(pt*x).scrollY(pt*y),1/n);
+  }
+  return s;
+}
+seed = ()=>noise(5,0).thresh()
+r=1.2, r2=10, q=2, l=0.1
+blur(o3).add(o3,-1).color(r,r,r).blend(o1,l).out(o1)
+blur(o1).color(r,r,r).blend(o2,l).out(o2)
+blur(o2).color(r2,r2,r2).contrast(q).blend(o3,l).blend(seed(),0).out(o3)
+osc(Math.PI*1,0,2).hue(0.7).modulate(blur(o3).modulateScale(shape(999,0.5,0.9),1.5,0.5).add(gradient().color(0.2,1),-1),1).out()
+// src(o3).out(o0) // simple
+``` -->
