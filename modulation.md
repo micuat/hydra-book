@@ -142,3 +142,37 @@ shape(400,0.5).repeat(40,40).modulate(osc(60,0).modulateScale(osc(8,0)).kaleid(4
 ```
 
 ![scale-mod-kaleid-mod](images/oscmodscalekaleidmod.png)
+
+modulatePixelate
+--------
+
+`modulatePixelate(multiple,offset)` applies pixelation based on the modulator texture. At a glance, it is not so different from `modulate` and pixelated texture cannot be observed:
+
+```javascript
+osc(40,0,2).out(o0)
+noise(3,0).out(o1)
+osc(40,0,2).modulatePixelate(noise(3,0)).out(o2)
+render()
+```
+
+![mod pixelate](images/mod-pixelate.png)
+
+How can we create a clearer pixelation effect?
+
+```javascript
+osc(40,0,2).out(o0)
+noise(3,0).pixelate(16,16).out(o1)
+osc(40,0,2).modulatePixelate(noise(3,0).pixelate(16,16),1024,16).out(o2)
+render()
+```
+
+![mod pixelate osc](images/mod-pixelate-osc.png)
+
+```javascript
+noise(3,0).out(o0)
+noise(3,0).pixelate(16,16).out(o1)
+noise(3,0).modulatePixelate(noise(3,0).pixelate(16,16),1024,16).out(o2)
+render()
+```
+
+![mod pixelate noise](images/mod-pixelate-noise.png)
