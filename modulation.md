@@ -31,6 +31,21 @@ for(int y = 0; y < height; y++) {
 }
 ```
 
+### luma
+
+`luma(threshold,tolerance)` cuts off pixels with intensity less than `threshold` (explained in [color](colors#luma)). This is useful to make a conditional modulation; let's take a look at the example below:
+
+```javascript
+osc(40,0,1).modulate(noise(3,0).luma(0.5,0.5)).out()
+```
+
+![oscmod luma](images/oscmod-luma.png)
+
+In this example, `luma` is applied to the modulator; thus, only certain area (with intensity more than 0.5) have `modulate` applied. This is particularly useful to emphasize the effect of modulation.
+
+
+### Feedback
+
 A modulator with a feedback loop keeps *pushing* pixels based on its brightness. In this example, a noise is modulated by itself in a feedback loop. As a result, bright pixels are pushed further and further, creating a smooth, 3D-like effect.
 
 ```javascript
@@ -46,6 +61,8 @@ voronoi(10, 0).modulate(o0).blend(o0,0.9).out(o0)
 ```
 
 ![voronoi-mod](images/voronoimod.png)
+
+### x and y
 
 In the examples above, modulating functions are grayscale, so pixels are always pushed to left-up direction with varying amplitude (positive direction is right and down for x and y, respectively, but *pushing* happens to the other direction as modulation is look-up). By adding color channels, and by remapping color values from `[0, 1]` to, for example, `[-1, 1]`, pixels are pushed to all directions. This can be achieved by `add(solid(1,1),-0.5)` (notice that only red and green are selected because blue channel is ignored by a modulator).
 
