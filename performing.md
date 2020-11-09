@@ -11,7 +11,9 @@ The editor is almost identical to Hydra, but you can press control+enter to eval
 Pre-coded or from Scratch
 --------
 
-There is no strict definition of live coding. [Toplap Manifesto](https://toplap.org/wiki/ManifestoDraft) can be a starting point, but you can create your own manifesto. Given that, starting from a pre-coded script or from a blank editor is up to you. Preparing a code has an advantage of making a set or a narrative; let's take a look at an example:
+There is no strict definition of live coding. [Toplap Manifesto](https://toplap.org/wiki/ManifestoDraft) can be a starting point, but you can create your own manifesto. Given that, starting from a pre-coded script or from a blank editor is up to you. Or you can even add sensors or other tools to generate videos.
+
+Preparing a code has an advantage of making a set or a narrative; let's take a look at an example:
 
 ```javascript
 // 1
