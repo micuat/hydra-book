@@ -4,5 +4,6 @@
 * [Colors](colors#colors)
 * [Arithmetic](arithmetic#arithmetic)
 * [Motions](motions#motions)
+* [Feedback](feedback#feedback)
 * [Custom GLSL](glsl#custom-glsl)
 
