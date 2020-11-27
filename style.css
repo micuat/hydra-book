@@ -82,3 +82,9 @@ p > img {
 .token.string {
   color: #ffcc66;
 }
+
+canvas {
+  left: 50%;
+  position: relative;
+  transform: translate(-50%, 0%);
+}

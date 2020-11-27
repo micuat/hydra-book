@@ -33,8 +33,6 @@ solid(0,1,0).layer(shape(5,0.3,0.3).luma()).out(o0)
 osc(30, 0, 1).layer(src(o0).chroma()).out(o1)
 render()
 ```
-![glsl chroma key](images/glslchroma.png)
-
 Ray Marching
 --------
 
@@ -63,8 +61,6 @@ setFunction({
 osc(10,0,2).sphere(6.0).out()
 ```
 
-![glsl-coord](images/glslcoord.png)
-
 A noise input can be added as an argument to displace the sphere surface. This can be done with `combineCoord` type, which is used by `modulate*` family.
 
 ```javascript
@@ -90,8 +86,6 @@ setFunction({
 
 osc(10,0,2).sphereDisplacement(noise(2,0,3).color(0.5,0.5,0.5), 6.0).out()
 ```
-
-![glsl-sphere](images/glslsphere.png)
 
 It can be hacked to set the background image.
 
@@ -120,5 +114,3 @@ setFunction({
 
 osc(10,0,2).layer(shape().luma().color(0,0,0)).sphereDisplacement2(noise(2,0,3).color(0.5,0.5,0.5), 6.0).out()
 ```
-
-![glsl-sphere 2](images/glslsphere2.png)

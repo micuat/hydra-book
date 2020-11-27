@@ -10,8 +10,6 @@ Gradient
 gradient(0).out(o0)
 ```
 
-![gradient](images/gradient.png)
-
 Oscillator
 --------
 
@@ -20,8 +18,6 @@ With the third argument of `osc()`, an oscillator generates a colored texture.
 ```javascript
 osc(30,0,1).out(o0)
 ```
-
-![osc-color](images/osccolor.png)
 
 Color Operations
 --------
@@ -34,15 +30,11 @@ Although not documented, `hue(hue)` is a useful function to shift the hue in HSV
 osc(30,0,1).hue(0.5).out(o0)
 ```
 
-![hue](images/hue.png)
-
 `hue()` is often useful to combine with feedback. In this example, `o0` is gradually modulated and its hue is shifted at the same time.
 
 ```javascript
 src(o0).modulateRotate(noise(2,0),0.03).hue(0.003).layer(shape(2,0.125).luma().color(0,0,1)).out(o0)
 ```
-
-![hue feedback](images/huefeedback.png)
 
 ### colorama
 
@@ -66,15 +58,11 @@ osc(30,0,1).colorama(0.01).out(o1)
 render()
 ```
 
-![colorama](images/colorama.png)
-
 This unpredictability is due to the following reasons. In the GLSL snippet above, first, HSV values are increased by `amount`, and after converting back to RGB, the `fract` value is returned. Since `fract` returns the fraction of the value (equivalent to `x % 1` in JavaScript), any values exceeding 1 will wrap to 0, which causes the discontinuity and unpredictable colors. Therefore, one way to make `colorama` effect less harsh is to set negative value as an argument:
 
 ```javascript
 osc(30,0,1).colorama(-0.1).out(o0)
 ```
-
-![colorama-negative](images/colorama-negative.png)
 
 ### luma
 
@@ -84,15 +72,11 @@ osc(30,0,1).colorama(-0.1).out(o0)
 osc(30,0,1).luma(0.5,0.01).out(o0)
 ```
 
-![luma](images/luma.png)
-
 Importantly, `luma()` returns an image with transparency. Therefore, the image can be overlayed to another image.
 
 ```javascript
 osc(200,0,1).rotate(1).layer(osc(30,0,1).luma(0.5,0.01)).out(o0)
 ```
-
-![luma-layer](images/lumalayer.png)
 
 With the second argument of `luma`, a shadow-like effect can be created. First, turn the texture to grayscale by `saturate(0)`, then use `luma(0.2,0.2)` to create blurred boundaries, and finally `color(0,0,0,1)` to convert grayscale to an alpha mask with black color. In the example, foreground texture `f()` is defined for convenience to avoid duplication for shadow generation and foreground rendering. The shadow texture is overlaid on the background texture `osc(200,0,1)` and then the foreground texture `f()` is overlaid on the shadow texture.
 
@@ -100,8 +84,6 @@ With the second argument of `luma`, a shadow-like effect can be created. First, 
 f=()=>osc(30,0,1)
 osc(200,0,1).rotate(1).layer(f().saturate(0).luma(0.2,0.2).color(0,0,0,1)).layer(f().luma(0.5,0.01)).out(o0)
 ```
-
-![luma-shadow](images/luma-shadow.png)
 
 Color Remapping
 --------
@@ -116,8 +98,6 @@ The first method attempts to map grayscale (intensity) texture to a palette, or 
 osc(Math.PI*2,0,2).modulate(noise(3,0).add(gradient(),-1),1).out(o0)
 ```
 
-![color-palette](images/color-palette.png)
-
 Let's break this one-liner to four buffers for explanation.
 
 ```javascript
@@ -127,8 +107,6 @@ osc(Math.PI*2,0,2).out(o2)
 src(o2).modulate(noise(3,0).add(gradient(),-1),1).out(o3)
 render()
 ```
-
-![color-palette-buffers](images/color-palette-buffers.png)
 
 The first buffer `o0` is the grayscale image to be remapped (in fact, as explained earlier, `noise` outputs [-1 1] instead of [0 1]). As the second buffer is complicated, we skip this; the third buffer `o2` (top right) is the new palette. In this example, an oscillator is used to make a smooth gradient. Black color in `o0` will be mapped to the pixels on the left, and white to the pixels in the right. The fourth buffer is the result.
 
@@ -167,15 +145,11 @@ Technically, the example above will sample the palette diagonally from the top l
 gradient().modulate(noise(3,0).add(gradient(),-1),1).out(o0)
 ```
 
-![color-palette-gradient-bad](images/color-palette-gradient-bad.png)
-
 If you want to want to sample in the center of the palette at y=0.5, one way is to do arithmetic operations:
 
 ```javascript
 gradient().modulate(noise(3,0).color(1,0,0).add(solid(0,0.5)).add(gradient(),-1),1).out(o0)
 ```
-
-![color-palette-gradient-good](images/color-palette-gradient-good.png)
 
 However, an easier way is to stretch the palette in the y axis using `scale()`:
 
@@ -203,11 +177,7 @@ func=()=>osc(20,0,0).modulate(noise(4,0))
 colorize(func,url).out()
 ```
 
-![color remapping](images/color-remapping.png)
-
 While the example code is long, in a nutshell, the input grayscale texture defined by `func` is separated into 5 layers based on the intensity, and each layer is recolored by the hexadecimal number specified in coolors URL. The GIF animation below shows each layer recolored for explanation. At the end, these layers are overlaid on top of each other to produce the final texture (above).
-
-![color remapping animation](images/color-remapping-animation.gif)
 
 <!-- Feedback
 --------
