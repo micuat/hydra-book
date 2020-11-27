@@ -6,28 +6,28 @@ Arithmetic is not the most exciting topic; nevertheless, you might encounter und
 Normalization
 --------
 
-In this example, `func`'s negative value is clipped by `luma` and overlaid on a red solid texture. If `func` is normalized from 0 to 1, the resulting texture is the same as `func` as it is not affected by `luma`. However, if `func` is normalized from -1 to 1, the negative values are clipped and the red texture appears. `osc`, `gradient` and `voronoi` are the former (0 to 1) and `noise` is the latter (-1 to 1) as seen in the image below.
+In this example, `func`'s negative value is clipped by `luma` and overlaid on a red solid texture. If `func` is normalized from 0 to 1, the resulting texture is the same as `func` as it is not affected by `luma`. However, if `func` is normalized from -1 to 1, the negative values are clipped and the magenta texture appears. `osc`, `gradient` and `voronoi` are the former (0 to 1) and `noise` is the latter (-1 to 1) as seen in the image below.
 
 ```javascript
 epsilon=0.001
-func = () => noise(4,0)
-solid(1,0,0).layer(func().luma(-epsilon,0)).out(o0)
+func = () => noise(4,0.1)
+solid(1,0,1).layer(func().luma(-epsilon,0)).out(o0)
 ```
 
 `noise` can be normalized to 0-1 by the following method:
 
 ```javascript
-solid(0.5,0.5,0.5).add(noise(4,0),0.5).out(o0)
+noise(4,0.1).add(solid(1,1,1),0.5).out(o0)
 ```
 
-Note that there are few conditions that negative values are clipped to 0. Not only `thresh()` and `luma()`, writing to a layer clips values below 0. In this example, `o1` (bottom left) is the desired result as `func` is evaluated as `noise` function, but `o2` (top right) shows saturation as layer `o0` does not contain negative values.
+Note that writing to a buffer clips negative values to 0. In fact, also values above 1 are clipped to 1. In this example, `o1` (bottom left) and `o2` (top right) show different results as `func` outputs values outside 0 to 1, but `src(o0)` only outputs values from 0 to 1; thus in the latter, the values only range from 0.5 to 1.
 
 ```javascript
 epsilon=0.001
-func = () => noise(4,0)
+func = () => noise(4,0.1)
 func().out(o0)
-solid(0.5,0.5,0.5).add(func(),0.5).out(o1)
-solid(0.5,0.5,0.5).add(o0,0.5).out(o2)
+func().add(solid(1,1,1),0.5).out(o1)
+src(o0).add(solid(1,1,1),0.5).out(o2)
 render()
 ```
 
@@ -45,9 +45,9 @@ vec4 diff(vec4 c0, vec4 c1){
 In this example, a gray solid texture is subtracted by `osc` using two different functions. Notice the difference; `diff` (top) returns absolute values therefore continuous, and `add` (bottom) keeps negative values which appears black.
 
 ```javascript
-solid(0.5,0.5,0.5).diff(osc(40,0,1)).out(o1)
-solid(0.5,0.5,0.5).add(osc(40,0,1),-1).out(o2)
-src(o1).mask(shape(2,0.5,0.001).scrollY(0.25)).add(src(o2).mask(shape(2,0.5,0.001).scrollY(-0.25)), 1).out(o0)
+solid(0.5,0.5,0.5).diff(osc(40,0,1)).out(o0)
+solid(0.5,0.5,0.5).add(osc(40,0,1),-1).out(o1)
+render()
 ```
 
 Another confusing blending functions are `mult` and `mask`. On Hydra interface, the result might appear the same; however, they treat the alpha channel differently. First, `mult` simply multiplies the color values of two textures. Each channel, R, G, B and A are treated independently. Therefore, the alpha channel of the resulting image in the example below remains 1 (note that both `osc` and `shape` return opaque textures), and the texture underneath cannot be seen.

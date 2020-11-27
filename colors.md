@@ -13,10 +13,16 @@ gradient(0).out(o0)
 Oscillator
 --------
 
-With the third argument of `osc()`, an oscillator generates a colored texture.
+With the third argument `offset` of `osc()`, an oscillator generates a colored texture. The parameter cycles from 0 to `PI*2`, which shifts the phase of R, G, B channels. A rainbow effect can be most visible at `offset=Math.PI/2`:
 
 ```javascript
-osc(30,0,1).out(o0)
+osc(30,0,Math.PI/2).out(o0)
+```
+
+At `offset=Math.PI`, the red and blue channels have the same phase:
+
+```javascript
+osc(30,0,Math.PI).out(o0)
 ```
 
 Color Operations
