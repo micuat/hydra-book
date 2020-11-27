@@ -1,4 +1,4 @@
-JavaScript Basics
+JavaScript Tips
 ========
 
 While Hydra is made easy to start without deep understanding of JavaScript, knowledge of JavaScript definitely helps your creation. In this chapter, several JavaScript features useful for Hydra are described.
@@ -67,3 +67,5 @@ This way, Hydra understands the parameters of `color` as functions instead of st
 
 Array
 --------
+
+Under the hood, Hydra overrides `Array.prototype` to add a few functions.

@@ -24,13 +24,13 @@ If you are already familiar with Hydra, I hope reading this book gives you some 
 Table of Contents
 --------
 
-* [JavaScript Basics](javascript#javascript)
 * [Textures](textures#textures)
 * [Modulation](modulation#modulation)
 * [Colors](colors#colors)
 * [Arithmetic](arithmetic#arithmetic)
 * [Motions](motions#motions)
 * [Custom GLSL](glsl#custom-glsl)
+* [JavaScript Tips](javascript#javascript)
 * [Performing with Hydra](performing#performing)
 
 
