@@ -84,7 +84,7 @@ osc(10,0,1).modulatePixelate(osc(1,1,0).pixelate(1,1).posterize(16,1).color(4,4)
 An analogy in math functions is `Math.floor`:
 
 ```javascript
-lfo = () => Math.floor((Math.sin(time) * 0.5 + 0.5) * 4 * 16) / 16
+lfo = () => Math.floor((Math.sin(time) * 0.5 + 0.5) * 8) + 1
 osc(10,0,1).pixelate(lfo,lfo).out(o0)
 ```
 
@@ -94,5 +94,3 @@ and similarly achieved by the JavaScript array extension in Hydra:
 lfo = [1,2,3,4].fast(2)
 osc(10,0,1).pixelate(lfo,lfo).out(o0)
 ```
-
-A screenshot is omitted because a static image would appear similar to the previous example. The same technique can be applied in conjunction with other modulation functions such as `modulateScrollX`.
