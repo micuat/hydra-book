@@ -111,7 +111,7 @@ This tiling technique can be used to create a RGB pixel filter. In this example,
 
 ```javascript
 n = 50;
-func = () => osc(30,0.0,1).modulate(noise(4,0))
+func = () => osc(30,0.1,1).modulate(noise(4,0.1))
 pix = () => shape(4,0.3).scale(1,1,3).repeat(n,n)
 pix().mult(func().color(1,0,0).pixelate(n,n)).out(o1)
 pix().mult(func().color(0,1,0).pixelate(n,n)).scrollX(1/n/3).out(o2)
