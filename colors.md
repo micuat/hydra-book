@@ -161,6 +161,8 @@ In some environments, you may need to add `color(0.99,0.99,0.99)` to the intensi
 
 ### Using coolors
 
+(Although this method is *deprecated*, this section is kept as a reference)
+
 Here, we use a palette taken from [coolors.co](https://coolors.co).
 
 ```javascript
@@ -178,6 +180,8 @@ colorize(func,url).out()
 ```
 
 While the example code is long, in a nutshell, the input grayscale texture defined by `func` is separated into 5 layers based on the intensity, and each layer is recolored by the hexadecimal number specified in coolors URL. The GIF animation below shows each layer recolored for explanation. At the end, these layers are overlaid on top of each other to produce the final texture (above).
+
+![color remap gif](images/color-remapping-animation.gif)
 
 <!-- Feedback
 --------
