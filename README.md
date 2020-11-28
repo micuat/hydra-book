@@ -9,6 +9,7 @@ Preface
 Hydra is an analog-synth-like coding environment for real-time visuals. It is created by Olivia Jack and is [open-source](https://github.com/ojack/hydra). You can simply open [Hydra editor](https://hydra.ojack.xyz) to start coding. There are a few resources besides this book:
 
 * [The official documentation](https://github.com/ojack/hydra#Getting-Started) is a good resource to get started,
+* [Hydra Functions](https://ojack.xyz/hydra-functions/) is an interactive webpage to see functions and its usages,
 * [Function list](https://github.com/ojack/hydra/blob/master/docs/funcs.md) covers all the functions available in Hydra,
 * and [Hydra Patterns on Twitter](https://twitter.com/hydra_patterns) is a way to get inspirations from other artists.
 
