@@ -82,6 +82,7 @@
               const placeholder = document.createElement('div');
               placeholder.style.width = "512px";
               placeholder.style.height = "512px";
+              placeholder.classList.add("hydracontainer");
               placeholders.push(placeholder);
               preEl.insertAdjacentElement('afterend', placeholder)
 
@@ -96,15 +97,11 @@
                   setTimeout(()=>{
                     eval(codeEl.textContent)
                   }, 60);
-                  preEl.insertAdjacentElement('afterend', hydraCanvas)
-                  placeholders.forEach((p) => {
-                    p.style.display = 'inherit';
-                  });
-                  placeholder.style.display = 'none';
+                  placeholder.appendChild(hydraCanvas);
                 }
-              }, { threshold: [0.2] });
+              }, { threshold: [0.5] });
 
-              observer.observe(linkEl);
+              observer.observe(placeholder);
             })
           })
 

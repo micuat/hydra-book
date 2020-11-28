@@ -83,7 +83,7 @@ p > img {
   color: #ffcc66;
 }
 
-canvas {
+.hydracontainer {
   left: 50%;
   position: relative;
   transform: translate(-50%, 0%);
