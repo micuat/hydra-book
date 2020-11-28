@@ -1,4 +1,7 @@
 * [Hydra Book](/#hydra-book)
+
+---
+
 * [Textures](textures#textures)
 * [Modulation](modulation#modulation)
 * [Colors](colors#colors)
@@ -6,5 +9,8 @@
 * [Motions](motions#motions)
 * [Feedback](feedback#feedback)
 * [Custom GLSL](glsl#custom-glsl)
+
+---
+
 * [JavaScript Tips](javascript#javascript)
 * [Performing with Hydra](performing#performing)
