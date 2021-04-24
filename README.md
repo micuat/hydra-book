@@ -1,12 +1,20 @@
 Hydra Book
 ========
 
-![cover](images/cover.png)
+<!-- ![cover](images/cover.png) -->
+
+```javascript
+shape(100,0.35,0.25).out(o0)
+osc(40,0,1).hue(-0.1).modulate(noise(1,0),0.5).modulateRotate(osc(12,0).kaleid(100),4).out(o1)
+src(o2).modulateHue(o1,4).blend(o0,0.03).out(o2)
+src(o2).contrast(2).mult(src(o1)).out(o3)
+render()
+```
 
 Important Notes
 --------
 
-Currently I'm editing the book on [hydra-book.glitch.me](https://hydra-book.glitch.me/) so if you are looking at [hydra-book.naotohieda.com](https://hydra-book.naotohieda.com), the content may be a bit old. Also I found issues when webgl is not loaded, docsify goes also broken (please open an [issue](https://github.com/micuat/hydra-book/issues)).
+Currently I'm editing the book on [hydra-book.glitch.me](https://hydra-book.glitch.me/) so if you are looking at [hydra-book.naotohieda.com](https://hydra-book.naotohieda.com), the content may be a bit old. Also I found issues when webgl is not loaded, docsify goes broken too (and feel free to open an [issue](https://github.com/micuat/hydra-book/issues)).
 
 
 Preface

@@ -55,6 +55,7 @@
             });
 
             const placeholders = [];
+            console.log(window.Docsify)
 
             hook.doneEach(() => {
               const codeBlocks = document.querySelectorAll("pre.hydra-code");
@@ -68,6 +69,7 @@
                   encodeURIComponent(codeEl.textContent)
                 )}" target="_blank" class="openin"><img src="symbols/external.png" class="external">open in editor</a>`;
 
+                
                 preEl.insertAdjacentElement("afterend", linkEl);
 
                 const placeholder = document.createElement("div");
