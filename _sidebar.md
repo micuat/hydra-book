@@ -14,4 +14,5 @@
 ---
 
 * [JavaScript Tips](javascript)
+* [Embed Hydra in Webpage](embed)
 * [Performing with Hydra](performing)

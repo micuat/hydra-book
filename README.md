@@ -50,7 +50,10 @@ Table of Contents
 * [Motions](motions)
 * [Feedback](feedback)
 * [Custom GLSL](glsl)
+
+
 * [JavaScript Tips](javascript)
+* [Embed Hydra in Webpage](embed)
 * [Performing with Hydra](performing)
 
 
