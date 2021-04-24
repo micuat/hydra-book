@@ -5,6 +5,7 @@
 * [Textures](textures)
 * [Modulation](modulation)
 * [Colors](colors)
+* [Layers](layers)
 * [Arithmetic](arithmetic)
 * [Motions](motions)
 * [Feedback](feedback)

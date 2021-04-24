@@ -12,16 +12,27 @@ Currently I'm editing the book on [hydra-book.glitch.me](https://hydra-book.glit
 Preface
 --------
 
-Hydra is an analog-synth-like coding environment for real-time visuals. It is created by Olivia Jack and is [open-source](https://github.com/ojack/hydra). You can simply open [Hydra editor](https://hydra.ojack.xyz) to start coding. There are a few resources besides this book:
+Hydra is an analog-synth-like coding environment for real-time visuals. It is created by Olivia Jack and is [open-source](https://github.com/ojack/hydra). You can simply open [Hydra editor](https://hydra.ojack.xyz) to start coding.
+
+
+### For those who just started
+
+There are a few resources besides this book:
 
 * [The official documentation](https://github.com/ojack/hydra#Getting-Started) is a good resource to get started,
 * [Hydra Functions](https://ojack.xyz/hydra-functions/) is an interactive webpage to see functions and its usages,
 * [Function list](https://github.com/ojack/hydra/blob/master/docs/funcs.md) covers all the functions available in Hydra,
 * and [Hydra Patterns on Twitter](https://twitter.com/hydra_patterns) is a way to get inspirations from other artists.
 
-This article is a work-in-progress online book to collect Hydra snippets. Thanks to its live-coding nature, simply improvising by chaining different functions may lead to an unexpected pattern; nevertheless, studying Hydra in a rather systematic way can reveal its potential. Thus, the goal is not only to accumulate frequently-used techniques to make coding easier but also to research the theory of Hydra to discover new images.
+Also Flor and Naoto gave an introductory workshop, which can be found here:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/TMRooK2c8Is" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+And the workshop material can be found [here](https://ccfest-2021-glitchme.glitch.me/).
 
 ### How to Read
+
+This article is a work-in-progress online book to collect Hydra snippets. Thanks to its live-coding nature, simply improvising by chaining different functions may lead to an unexpected pattern; nevertheless, studying Hydra in a rather systematic way can reveal its potential. Thus, the goal is not only to accumulate frequently-used techniques to make coding easier but also to research the theory of Hydra to discover new images.
 
 If you are new to Hydra, I recommend you to skim through the book and find patterns you like, and try the code by pressing "open in editor" link. You can change some parameters and press `ctrl+shift+enter` to refresh the sketch.
 
@@ -34,6 +45,7 @@ Table of Contents
 * [Textures](textures)
 * [Modulation](modulation)
 * [Colors](colors)
+* [Layers](layers)
 * [Arithmetic](arithmetic)
 * [Motions](motions)
 * [Feedback](feedback)
