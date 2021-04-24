@@ -5,7 +5,7 @@ Hydra Book
 
 ```javascript
 shape(100,0.35,0.25).out(o0)
-osc(40,0,1).hue(-0.1).modulate(noise(1,0),0.5).modulateRotate(osc(12,0).kaleid(100),4).out(o1)
+osc(40,0.1,1).hue(-0.1).modulate(noise(1,0),0.5).modulateRotate(osc(12,0).kaleid(100),4).out(o1)
 src(o2).modulateHue(o1,4).blend(o0,0.03).out(o2)
 src(o2).contrast(2).mult(src(o1)).out(o3)
 render()
@@ -59,7 +59,7 @@ Table of Contents
 * [Feedback](feedback)
 * [Custom GLSL](glsl)
 
-
+Applications
 * [JavaScript Tips](javascript)
 * [Embed Hydra in Webpage](embed)
 * [Performing with Hydra](performing)

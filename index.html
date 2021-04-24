@@ -55,22 +55,25 @@
             });
 
             const placeholders = [];
-            console.log(window.Docsify)
 
             hook.doneEach(() => {
+              const isNotTop = window.Docsify.dom.$.title !== "Hydra Book";
               const codeBlocks = document.querySelectorAll("pre.hydra-code");
 
               codeBlocks.forEach(preEl => {
                 const parentEl = preEl.parentElement;
                 const codeEl = preEl.firstChild;
 
-                const linkEl = document.createElement("p");
-                linkEl.innerHTML = `<a href="https://hydra.ojack.xyz/?code=${btoa(
-                  encodeURIComponent(codeEl.textContent)
-                )}" target="_blank" class="openin"><img src="symbols/external.png" class="external">open in editor</a>`;
+                if (isNotTop) {
+                  const linkEl = document.createElement("p");
+                  linkEl.innerHTML = `<a href="https://hydra.ojack.xyz/?code=${btoa(
+                    encodeURIComponent(codeEl.textContent)
+                  )}" target="_blank" class="openin"><img src="symbols/external.png" class="external">open in editor</a>`;
 
-                
-                preEl.insertAdjacentElement("afterend", linkEl);
+                  preEl.insertAdjacentElement("afterend", linkEl);
+                } else {
+                  preEl.style.display = "none";
+                }
 
                 const placeholder = document.createElement("div");
                 placeholder.style.width = "512px";

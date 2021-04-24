@@ -16,3 +16,8 @@
 * [JavaScript Tips](javascript)
 * [Embed Hydra in Webpage](embed)
 * [Performing with Hydra](performing)
+
+---
+
+* [Thoughs on modulation](https://naotohieda.com/blog/hydra-modulate/)
+* [Code as state](https://naotohieda.com/blog/code-as-state-en/)
