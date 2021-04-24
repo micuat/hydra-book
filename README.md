@@ -33,7 +33,7 @@ Table of Contents
 * [Feedback](feedback#feedback)
 * [Custom GLSL](glsl#custom-glsl)
 * [JavaScript Tips](javascript#javascript)
-* [Performing with Hydra](performing#performing)
+* [Performing with Hydra](performing#performing-with-hydra)
 
 
 License

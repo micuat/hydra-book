@@ -13,4 +13,4 @@
 ---
 
 * [JavaScript Tips](javascript#javascript)
-* [Performing with Hydra](performing#performing)
+* [Performing with Hydra](performing#performing-with-hydra)
