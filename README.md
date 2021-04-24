@@ -3,6 +3,12 @@ Hydra Book
 
 ![cover](images/cover.png)
 
+Important Notes
+--------
+
+Currently I'm editing the book on [hydra-book.glitch.me](https://hydra-book.glitch.me/) so if you are looking at [hydra-book.naotohieda.com](https://hydra-book.naotohieda.com), the content may be a bit old. Also I found strange issues specifically on ubuntu + firefox like sidebar doesn't load, so please try opening on Chrome if you find any issues (if it doesn't fix, please open an [issue](https://github.com/micuat/hydra-book/issues)).
+
+
 Preface
 --------
 
