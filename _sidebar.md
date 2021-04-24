@@ -1,16 +1,16 @@
-* [Hydra Book](/#hydra-book)
+* [Hydra Book](/)
 
 ---
 
-* [Textures](textures#textures)
-* [Modulation](modulation#modulation)
-* [Colors](colors#colors)
-* [Arithmetic](arithmetic#arithmetic)
-* [Motions](motions#motions)
-* [Feedback](feedback#feedback)
-* [Custom GLSL](glsl#custom-glsl)
+* [Textures](textures)
+* [Modulation](modulation)
+* [Colors](colors)
+* [Arithmetic](arithmetic)
+* [Motions](motions)
+* [Feedback](feedback)
+* [Custom GLSL](glsl)
 
 ---
 
-* [JavaScript Tips](javascript#javascript-tips)
-* [Performing with Hydra](performing#performing-with-hydra)
+* [JavaScript Tips](javascript)
+* [Performing with Hydra](performing)
