@@ -1,0 +1,90 @@
+body {
+  font-family: 'Chivo', sans-serif;
+  font-weight: 300;
+}
+
+body, .sidebar {
+  background-color: black;
+  color: white;
+}
+
+.external {
+  width: 12pt;
+  height: 12pt;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+.openin {
+  text-align: right;
+  width: 100%;
+  display: block;
+}
+
+p > img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.markdown-section em {
+  color: #cccccc;
+}
+
+.markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section strong {
+  color: white;
+  font-weight: 700;
+}
+
+.markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4 {
+  text-transform: uppercase;
+}
+
+.sidebar ul li a {
+  color: white;
+}
+
+.anchor span {
+  color: white;
+}
+
+.markdown-section code, .markdown-section pre {
+  background-color: black;
+  font-family: monospace,courier;
+  border: solid white 2px;
+  color: #99cc99;
+}
+
+.markdown-section pre > code {
+  color: #99cc99;
+  background-color: black;
+  border: none;
+}
+
+.token.function {
+  color: #99cc99;
+}
+.token.number {
+  color: #a16a94;
+}
+.token.punctuation {
+  color: #cccccc;
+}
+.token.operator {
+  color: #cccccc;
+}
+.token.parameter {
+  color: #f99157;
+}
+.token.keyword {
+  color: #f2777a;
+}
+.token.string {
+  color: #ffcc66;
+}
+
+.hydracontainer {
+  left: 50%;
+  position: relative;
+  transform: translate(-50%, 0%);
+}
