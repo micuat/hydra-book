@@ -51,6 +51,13 @@
       // osc().out();
     // }
     window.$docsify = {
+      scrollToTop: {
+        auto: true,
+        text: 'Top',
+        right: 15,
+        bottom: 15,
+        offset: 500
+      },
       loadSidebar: true,
       subMaxLevel: 3,
       name: '',
@@ -117,6 +124,7 @@
       console.log(e)
     }
   </script>
+  <script src="//unpkg.com/docsify-scroll-to-top/dist/docsify-scroll-to-top.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
 </body>
 
