@@ -48,7 +48,7 @@ If the entire code is evaluated, the last line (`solid()`) will take over and th
 
 Footnotes:
 
-[^1]: The photo is taken at a show at Gibney Dance in 2018 with a permission of the artist, but I forgot the name of the artist and the show.
+[^1]: https://naotohieda.com/blog/code-as-state-en/ The photo is taken at a show at Gibney Dance in 2018 with a permission of the artist, but I forgot the name of the artist and the show.
 
 [^2]: Of course, you can imagine an environment where you can change the properties through `source0`'s member variables (e.g., `source0.type = "noise"`), but in any case this design is wordy and not suitable for live coding.
 

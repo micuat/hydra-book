@@ -70,7 +70,7 @@ JavaScript and applications:
 Essays:
 
 * [Thoughts on modulation](thoughts-on-modulation)
-* [Code as state](https://naotohieda.com/blog/code-as-state-en/)
+* [Code as state](code-as-state)
 
 License
 --------
