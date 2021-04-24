@@ -50,6 +50,8 @@ If you are already familiar with Hydra, I hope reading this book gives you some 
 Table of Contents
 --------
 
+Understanding Hydra:
+
 * [Textures](textures)
 * [Modulation](modulation)
 * [Colors](colors)
@@ -59,11 +61,16 @@ Table of Contents
 * [Feedback](feedback)
 * [Custom GLSL](glsl)
 
-Applications
+JavaScript and applications:
+
 * [JavaScript Tips](javascript)
 * [Embed Hydra in Webpage](embed)
 * [Performing with Hydra](performing)
 
+Essays:
+
+* [Thoughts on modulation](https://naotohieda.com/blog/hydra-modulate/)
+* [Code as state](https://naotohieda.com/blog/code-as-state-en/)
 
 License
 --------

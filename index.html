@@ -57,7 +57,7 @@
             const placeholders = [];
 
             hook.doneEach(() => {
-              const isNotTop = window.Docsify.dom.$.title !== "Hydra Book";
+              const isNotTop = document.URL[document.URL.length - 1] !== "/";
               const codeBlocks = document.querySelectorAll("pre.hydra-code");
 
               codeBlocks.forEach(preEl => {
