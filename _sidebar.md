@@ -19,5 +19,5 @@
 
 ---
 
-* [Thoughts on modulation](https://naotohieda.com/blog/hydra-modulate/)
+* [Thoughts on modulation](thoughts-on-modulation)
 * [Code as state](https://naotohieda.com/blog/code-as-state-en/)
