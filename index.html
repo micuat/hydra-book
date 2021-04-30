@@ -82,6 +82,11 @@
                 placeholders.push(placeholder);
                 preEl.insertAdjacentElement("afterend", placeholder);
 
+                // const c = document.createElement("canvas");
+                // c.width = 512;
+                // c.height = 512;
+                // placeholder.appendChild(c);
+
                 var observer = new IntersectionObserver(
                   function(entries) {
                     if (entries[0].isIntersecting === true) {
@@ -95,6 +100,16 @@
                         eval(codeEl.textContent);
                       }, 60);
                       placeholder.appendChild(hydraCanvas);
+                      
+                      // the "better" way - takes more power? weird alpha?
+                      // eval(codeEl.textContent);
+                      // update = () => {
+                      // }
+                      // setTimeout(() => {
+                      //   update = () => {
+                      //     c.getContext('2d').drawImage(hydraCanvas, 0, 0);
+                      //   }
+                      // }, 60);
                     }
                   },
                   { threshold: [0.5] }
