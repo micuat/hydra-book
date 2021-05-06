@@ -14,7 +14,7 @@ render()
 Important Notes
 --------
 
-You are redirected to [hydra-book.glitch.me](https://hydra-book.glitch.me/), which is the latest version of Hydra Book. While I'm sloppy about updating the Github repository, if you find any problems feel free to report on the [issue page](https://github.com/micuat/hydra-book/issues).
+You are redirected to [hydra-book.glitch.me](https://hydra-book.glitch.me/), which is the latest version of Hydra Book. While I'm sloppy about updating the Github repository, if you find any problems feel free to report on [Github issue page](https://github.com/micuat/hydra-book/issues).
 
 
 Preface
@@ -40,9 +40,9 @@ And the workshop material can be found [here](https://ccfest-2021-glitchme.glitc
 
 ### How to Read
 
-This article is a work-in-progress online book to collect Hydra snippets. Thanks to its live-coding nature, simply improvising by chaining different functions may lead to an unexpected pattern; nevertheless, studying Hydra in a rather systematic way can reveal its potential. Thus, the goal is not only to accumulate frequently-used techniques to make coding easier but also to research the theory of Hydra to discover new images.
+This is a work-in-progress online book to collect Hydra snippets. Thanks to its live-coding nature, simply improvising by chaining different functions may lead to an unexpected pattern; nevertheless, studying Hydra in a structured, systematic way can reveal its potential. Thus, the goal of this book is not only to accumulate frequently-used techniques to make coding easier but also to research the theory of Hydra to discover new images.
 
-If you are new to Hydra, I recommend you to skim through the book and find patterns you like, and try the code by pressing "open in editor" link. You can change some parameters and press `ctrl+shift+enter` to refresh the sketch.
+If you are new to Hydra, I recommend you to skim through the book and find patterns you like, and try the code by pressing "open in editor" link. On the editor, you can change some parameters and press `ctrl+shift+enter` to re-evaluate the sketch.
 
 If you are already familiar with Hydra, I hope reading this book gives you some insight not only about "how" to make a pattern but also "why" a pattern emerges.
 
