@@ -14,7 +14,7 @@ render()
 Important Notes
 --------
 
-Currently I'm editing the book on [hydra-book.glitch.me](https://hydra-book.glitch.me/) so if you are looking at [hydra-book.naotohieda.com](https://hydra-book.naotohieda.com), the content may be a bit old. Also I found issues when webgl is not loaded, docsify goes broken too (and feel free to open an [issue](https://github.com/micuat/hydra-book/issues)).
+You are redirected to [hydra-book.glitch.me](https://hydra-book.glitch.me/), which is the latest version of Hydra Book. While I'm sloppy about updating the Github repository, if you find any problems feel free to report on the [issue page](https://github.com/micuat/hydra-book/issues).
 
 
 Preface
@@ -75,4 +75,4 @@ Essays:
 License
 --------
 
-As described in [LICENSE](https://github.com/micuat/hydra-book/blob/master/LICENSE), this repository is under public domain, meaning that all the contents including code snippets can be used freely without any restrictions. Nevertheless, I appreciate it if you cite this book or simply let [me](https://naotohieda.com) know when you write about any ideas developed from this book!
+The code snippets are under public domain, meaning that all the code snippets can be used freely without any restrictions. Nevertheless, I appreciate it if you cite this book or simply let [me](https://naotohieda.com) know when you write about any ideas developed from this book! The explanations and essays are licensed under [CC Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/).
