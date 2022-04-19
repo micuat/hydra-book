@@ -126,10 +126,23 @@ This breathing or ripple texture can be further used for modulating another text
 shape(400,0.5).repeat(40,40).modulate(osc(60,0).modulateScale(osc(8,0)).kaleid(400),0.02).out(o0)
 ```
 
+`modulateScale`-ing a `shape` is not that interesting because it ends up similar to `modulate`:
+
+```hydra
+shape(4).modulateScale(noise(8,0)).out(o0)
+```
+
+To make the effect clearer, use `pixelate` to the "modulator" function (inside `modulateScale`):
+
+```hydra
+shape(4).modulateScale(noise(8,0).pixelate(2,2)).out(o0)
+```
+
+
 modulatePixelate
 --------
 
-`modulatePixelate(multiple,offset)` applies pixelation based on the modulator texture. At a glance, it is not so different from `modulate` and pixelated texture cannot be observed:
+`modulatePixelate(multiple,offset)` applies pixelation based on the modulator texture. At a glance, it is not so different from `modulate` and "pixelated" texture cannot be observed:
 
 ```hydra
 osc(40,0,2).out(o0)
@@ -138,7 +151,7 @@ osc(40,0,2).modulatePixelate(noise(3,0)).out(o2)
 render()
 ```
 
-How can we create a clearer pixelation effect?
+How can we create a clearer pixelation effect? A strategy is, similar to the example in `modulateScale`, to apply `pixelate` to the "modulator" function (inside `modulatePixelate`).
 
 ```hydra
 osc(40,0,2).out(o0)

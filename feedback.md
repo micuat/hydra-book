@@ -23,3 +23,11 @@ src(o0)
   ,0.003)
   .layer(osc(Math.PI*8,0.1,2).mask(shape(4,0.3,0.0001))).out()
 ```
+
+
+```hydra
+src(o0)
+  .modulate(gradient().pixelate(2,2).brightness(-0.5)
+  ,-0.1)
+  .layer(osc(Math.PI*8,0.1,2).mask(shape(4,0.3,0.0001))).out()
+```
