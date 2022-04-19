@@ -13,7 +13,7 @@ shape(2).scale(0.01).out(o0)
 or simply,
 
 ```hydra
-shape(2,0.0025,0.001).out(o0)
+shape(2,0.01,0).out(o0)
 ```
 
 `shape(4)` is a square:
