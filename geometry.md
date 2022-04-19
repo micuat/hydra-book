@@ -36,26 +36,22 @@ var a = () => shape(4,0.4).repeat(n,n)
 a().add(a().scroll(0.5/n,0.5/n)).out()
 ```
 
-Here is an elegant (and tricky) way: `shape` is first scaled to stretch in Y direction, and repeated in a strange way. This works because the 3rd parameter 
+Here is an elegant (and tricky) way: `shape` is first scaled to stretch in Y direction, and repeated in a strange way. This works because the 3rd parameter is to scroll every even-th pattern in the X direction (and the 4th parameter for Y direction).
 
 ```hydra
 shape(4,0.4).scale(1,1,2).repeat(4,8,.5).out()
 ```
 
-Similar to `kaleid()`, `shape()` with a large number of sides creates a circle. By tweaking the example above, it generates a Polka dot pattern.
+By tweaking the example above, it generates a Polka dot pattern.
 
 ```hydra
-var n = 4
-var a = () => shape(400,0.5).repeat(n,n)
-a().add(a().scrollX(0.5/n).scrollY(0.5/n),1).out()
+shape(999,0.4).scale(1,1,2).repeat(4,8,.5).out()
 ```
 
-or almost equivalent with (the center of the image will be horizontally shifted)
+and here is another approach for Polka dot:
 
 ```hydra
-var n = 8/Math.sqrt(2)
-var a = () => shape(400,0.75).repeat(n,n)
-a().rotate(Math.PI/4).out()
+shape(999,0.4).repeat(8,8).rotate(Math.PI/4).out()
 ```
 
 This tiling technique can be used to create a RGB pixel filter. In this example, `func` is decomposed into R, G, and B channels and overlaid on top of each other.
@@ -71,6 +67,18 @@ pix().mult(func().color(0,0,1).pixelate(n,n)).scrollX(2/n/3).out(o3)
 solid().add(src(o1),1).add(src(o2),1).add(src(o3),1).out(o0)
 ```
 
+Kaleid
+--------
+
+We already saw [`kaleid`](textures?id=oscillator) ealier, but let's try to understand it further. 
+
+```hydra
+var k = 16
+var d = Math.PI/2/k
+shape(2,d).scrollY(d/2).rotate(Math.atan2(d,1))
+  .scrollY(-d/2-.5)
+  .kaleid(k).out()
+```
 
 Scaling
 --------
