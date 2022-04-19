@@ -8,7 +8,7 @@ Normalization
 
 In this example, `func`'s negative value is clipped by `luma` and overlaid on a red solid texture. If `func` is normalized from 0 to 1, the resulting texture is the same as `func` as it is not affected by `luma`. However, if `func` is normalized from -1 to 1, the negative values are clipped and the magenta texture appears. `osc`, `gradient` and `voronoi` are the former (0 to 1) and `noise` is the latter (-1 to 1) as seen in the image below.
 
-```javascript
+```hydra
 epsilon=0.001
 func = () => noise(4,0.1)
 solid(1,0,1).layer(func().luma(-epsilon,0)).out(o0)
@@ -16,13 +16,13 @@ solid(1,0,1).layer(func().luma(-epsilon,0)).out(o0)
 
 `noise` can be normalized to 0-1 by the following method:
 
-```javascript
+```hydra
 noise(4,0.1).add(solid(1,1,1),0.5).out(o0)
 ```
 
 Note that writing to a buffer clips negative values to 0. In fact, also values above 1 are clipped to 1. In this example, `o1` (bottom left) and `o2` (top right) show different results as `func` outputs values outside 0 to 1, but `src(o0)` only outputs values from 0 to 1; thus in the latter, the values only range from 0.5 to 1.
 
-```javascript
+```hydra
 epsilon=0.001
 func = () => noise(4,0.1)
 func().out(o0)
@@ -44,7 +44,7 @@ vec4 diff(vec4 c0, vec4 c1){
 
 In this example, a gray solid texture is subtracted by `osc` using two different functions. Notice the difference; `diff` (top) returns absolute values therefore continuous, and `add` (bottom) keeps negative values which appears black.
 
-```javascript
+```hydra
 solid(0.5,0.5,0.5).diff(osc(40,0,1)).out(o0)
 solid(0.5,0.5,0.5).add(osc(40,0,1),-1).out(o1)
 render()
@@ -52,26 +52,26 @@ render()
 
 Another confusing blending functions are `mult` and `mask`. On Hydra interface, the result might appear the same; however, they treat the alpha channel differently. First, `mult` simply multiplies the color values of two textures. Each channel, R, G, B and A are treated independently. Therefore, the alpha channel of the resulting image in the example below remains 1 (note that both `osc` and `shape` return opaque textures), and the texture underneath cannot be seen.
 
-```javascript
+```hydra
 osc(10,0,1).hue(0.5).layer(osc(10,0,1).mult(shape(4,0.5,0.001))).out()
 ```
 
 Contrarily, `mask` only uses the luminance of the mask texture. The returned texture is not only the multiplication of the masked texture and the luminance of mask, the alpha channel is overwritten by the luminance of mask. Therefore, the returned texture can be overlaid on another texture by `layer`.
 
-```javascript
+```hydra
 osc(10,0,1).hue(0.5).layer(osc(10,0,1).mask(shape(4,0.5,0.001))).out()
 ```
 
 With `mult`, a similar effect can be obtained by using `luma` to modify the alpha channel. In this example, the resulting image is the same; however, with a grayscale texture, the result depends on the arguments of `luma`.
 
-```javascript
+```hydra
 osc(10,0,1).hue(0.5).layer(osc(10,0,1).mult(shape(4,0.5,0.001).luma(0.5,0.001))).out()
 ```
 
 <!--
 reaction diffusion
 
-```javascript
+```hydra
 blur = (o)=>{
   let pt=0.0015,rt=0, n=16, ph=Math.PI*2/n
   let s=solid(0), t=Math.random()*ph

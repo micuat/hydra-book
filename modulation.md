@@ -8,7 +8,7 @@ Video Tutorial
 
 Modulators are the key component in Hydra. Let's look at this example; the modulated function `osc()` is on top left, the modulating function `noise()` is on bottom left, and the result is on top right.
 
-```javascript
+```hydra
 osc(40,0,1).out(o0)
 noise(3,0).out(o1)
 osc(40,0,1).modulate(noise(3,0)).out(o2)
@@ -38,7 +38,7 @@ for(int y = 0; y < height; y++) {
 
 `luma(threshold,tolerance)` cuts off pixels with intensity less than `threshold` (explained in [color](colors#luma)). This is useful to make a conditional modulation; let's take a look at the example below:
 
-```javascript
+```hydra
 osc(40,0,1).modulate(noise(3,0).luma(0.5,0.5)).out()
 ```
 
@@ -49,13 +49,13 @@ In this example, `luma` is applied to the modulator; thus, only certain area (wi
 
 A modulator with a feedback loop keeps *pushing* pixels based on its brightness. In this example, a noise is modulated by itself in a feedback loop. As a result, bright pixels are pushed further and further, creating a smooth, 3D-like effect.
 
-```javascript
+```hydra
 noise(10, 0).modulate(o0).blend(o0,0.9).out(o0)
 ```
 
 This example uses the same technique on a Voronoi diagram. Similar to above, the resulting image has a fake 3D look.
 
-```javascript
+```hydra
 voronoi(10, 0).modulate(o0).blend(o0,0.9).out(o0)
 ```
 
@@ -63,7 +63,7 @@ voronoi(10, 0).modulate(o0).blend(o0,0.9).out(o0)
 
 In the examples above, modulating functions are grayscale, so pixels are always pushed to left-up direction with varying amplitude (positive direction is right and down for x and y, respectively, but *pushing* happens to the other direction as modulation is look-up). By adding color channels, and by remapping color values from `[0, 1]` to, for example, `[-1, 1]`, pixels are pushed to all directions. This can be achieved by `add(solid(1,1),-0.5)` (notice that only red and green are selected because blue channel is ignored by a modulator).
 
-```javascript
+```hydra
 shape(4,0.5).out(o0)
 osc(10,0,1).modulate(noise(2,0),0.5).out(o1)
 src(o2).modulate(src(o1).add(solid(1,1),-0.5),0.01).blend(o0,0.01).out(o2)
@@ -72,7 +72,7 @@ render()
 
 This texture can be further developed by modifying the modulating buffer using `luma()`
 
-```javascript
+```hydra
 shape(4,0.5).out(o0)
 osc(10,0,1).modulate(noise(2,0),0.5).luma(0.7).out(o1)
 src(o2).modulate(src(o1).add(solid(1,1),-0.5),0.01).blend(o0,0.01).out(o2)
@@ -81,7 +81,7 @@ render()
 
 or `posterize()`
 
-```javascript
+```hydra
 shape(4,0.5).out(o0)
 osc(10,0,1).modulate(noise(2,0),0.5).posterize(4).out(o1)
 src(o2).modulate(src(o1).add(solid(1,1),-0.5),0.01).blend(o0,0.01).out(o2)
@@ -97,7 +97,7 @@ modulateHue
 return _st + (vec2(_c0.g - _c0.r, _c0.b - _c0.g) * amount * 1.0/resolution);
 ```
 
-```javascript
+```hydra
 shape(4,0.5).out(o0)
 osc(10,0,1).modulate(noise(2,0),0.5).hue(-0.1).out(o1)
 src(o2).modulateHue(o1,8).blend(o0,0.01).out(o2)
@@ -110,19 +110,19 @@ modulateScale
 
 `modulateScale` is a variant of `modulate`. The original `modulate` translates the texture coordinate by `(r, g)` which is the color of modulating texture; `modulateScale` scales the pixel position by `(r, g)`. Simply applying `modulateScale` can create huge distortion, which is pleasant as it is, but you can extend your repertoire by understanding the behavior of `modulateScale`. For example, modulating a high frequency oscillator by a low frequency oscillator can create the following distortion. Note that `modulateScrollX` achieves a similar effect; nevertheless, scrolling involve texture wrapping which creates a discontinuity unlike scaling.
 
-```javascript
+```hydra
 osc(60,0).modulateScale(osc(8,0)).out(o0)
 ```
 
 `kaleid` can be added to create a ripple or breathing effect towards or from the center.
 
-```javascript
+```hydra
 osc(60,0).modulateScale(osc(8,0)).kaleid(400).out(o0)
 ```
 
 This breathing or ripple texture can be further used for modulating another texture.
 
-```javascript
+```hydra
 shape(400,0.5).repeat(40,40).modulate(osc(60,0).modulateScale(osc(8,0)).kaleid(400),0.02).out(o0)
 ```
 
@@ -131,7 +131,7 @@ modulatePixelate
 
 `modulatePixelate(multiple,offset)` applies pixelation based on the modulator texture. At a glance, it is not so different from `modulate` and pixelated texture cannot be observed:
 
-```javascript
+```hydra
 osc(40,0,2).out(o0)
 noise(3,0).out(o1)
 osc(40,0,2).modulatePixelate(noise(3,0)).out(o2)
@@ -140,14 +140,14 @@ render()
 
 How can we create a clearer pixelation effect?
 
-```javascript
+```hydra
 osc(40,0,2).out(o0)
 noise(3,0).pixelate(16,16).out(o1)
 osc(40,0,2).modulatePixelate(noise(3,0).pixelate(16,16),1024,16).out(o2)
 render()
 ```
 
-```javascript
+```hydra
 noise(3,0).out(o0)
 noise(3,0).pixelate(16,16).out(o1)
 noise(3,0).modulatePixelate(noise(3,0).pixelate(16,16),1024,16).out(o2)

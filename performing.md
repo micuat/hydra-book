@@ -15,7 +15,7 @@ There is no strict definition of live coding. [Toplap Manifesto](https://toplap.
 
 Preparing a code has an advantage of making a set or a narrative; let's take a look at an example:
 
-```javascript
+```hydra
 // 1
 osc(60,0.1,1.5).modulate(o1).out(o0)
 solid().out(o1)

@@ -12,7 +12,7 @@ Chroma Key
 
 This example modifies `color` to replace green background with transparency (i.e., chroma keying). The GLSL code is ported from [Inigo Quilez's example](https://www.shadertoy.com/view/XsfGzn).
 
-```javascript
+```hydra
 setFunction({
   name: 'chroma',
   type: 'color',
@@ -38,7 +38,7 @@ Ray Marching
 
 In this example, a simple ray marching is implemented as a `coord` function, which literally modifies the coordinates, to map incoming texture to a sphere.
 
-```javascript
+```hydra
 setFunction({
   name: 'sphere',type: 'coord',
   inputs: [
@@ -63,7 +63,7 @@ osc(10,0,2).sphere(6.0).out()
 
 A noise input can be added as an argument to displace the sphere surface. This can be done with `combineCoord` type, which is used by `modulate*` family.
 
-```javascript
+```hydra
 setFunction({
   name: 'sphereDisplacement',type: 'combineCoord',
   inputs: [
@@ -89,7 +89,7 @@ osc(10,0,2).sphereDisplacement(noise(2,0,3).color(0.5,0.5,0.5), 6.0).out()
 
 It can be hacked to set the background image.
 
-```javascript
+```hydra
 setFunction({
   name: 'sphereDisplacement2',
   type: 'combineCoord',

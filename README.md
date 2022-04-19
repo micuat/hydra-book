@@ -20,17 +20,17 @@ You are redirected to [hydra-book.glitch.me](https://hydra-book.glitch.me/), whi
 Preface
 --------
 
-Hydra is an analog-synth-like coding environment for real-time visuals. It is created by Olivia Jack and is [open-source](https://github.com/ojack/hydra). You can simply open [Hydra editor](https://hydra.ojack.xyz) to start coding.
+Hydra is an analog-synth-like coding environment for real-time visuals. It is created by Olivia Jack and is [open-source](https://github.com/hydra-synth). You can simply open [Hydra editor](https://hydra.ojack.xyz) to start coding.
 
 
 ### For those who just started
 
 There are a few resources besides this book:
 
-* [The official documentation](https://github.com/ojack/hydra#Getting-Started) is a good resource to get started,
-* [Hydra Functions](https://ojack.xyz/hydra-functions/) is an interactive webpage to see functions and its usages,
-* [Function list](https://github.com/ojack/hydra/blob/master/docs/funcs.md) covers all the functions available in Hydra,
-* and [Hydra Patterns on Twitter](https://twitter.com/hydra_patterns) is a way to get inspirations from other artists.
+* [The new official documentation](https://hydra.ojack.xyz/docs/#/) is a good resource to get started,
+* [Hydra Functions](https://hydra.ojack.xyz/functions/) is an interactive webpage to see functions and its usages,
+* [Hydra Garden](https://hydra.ojack.xyz/garden/) is a place for inspirations,
+* and while not updated anymore, [Hydra Patterns on Twitter](https://twitter.com/hydra_patterns) is a way to find sketches from other artists.
 
 Also Flor and Naoto gave an introductory workshop, which can be found here:
 

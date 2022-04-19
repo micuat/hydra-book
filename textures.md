@@ -8,7 +8,7 @@ Oscillator
 
 `osc(freq,sync,offset)` is one of the basic sources to create a texture. The first argument determines the frequency (i.e., how packed the stripes are), the second for the sync (i.e., the scroll speed), and the third for the offset, which adds color to the pattern. One cycle of an oscillator in the screen space can be achieved by `osc(Math.PI * 2)`; thus the following example shows 10 cycles:
 
-```javascript
+```hydra
 osc(Math.PI*2*10,0).out(o0)
 ```
 
@@ -18,7 +18,7 @@ By adding `thresh()` or `posterize()`, the oscillator pattern becomes clear stri
 
 (`render()` displays four buffers; `o0` on top left, `o1` on bottom left, `o2` on top right and `o3` on bottom right)
 
-```javascript
+```hydra
 osc(40,0).out(o0)
 src(o0).thresh().out(o1)
 src(o0).posterize(3,1).out(o2)
@@ -28,7 +28,7 @@ render()
 
 `kaleid()` with a large number creates circles,
 
-```javascript
+```hydra
 osc(200, 0).kaleid(99).out(o0)
 ```
 
@@ -36,7 +36,7 @@ osc(200, 0).kaleid(99).out(o0)
 
 You might have noticed that this sketch is stretched if the window is not square. `scale(amount,x,y)` can correct the scaling; it scales `amount*x` to x-axis and `amount*y` to y-axis. Therefore, `scale(1,1,16/9)` fits the sketch to 16:9 window, and in general,
 
-```clike
+```javascript
 scale(1,1,()=>window.innerWidth/window.innerHeight)
 ```
 
@@ -44,7 +44,7 @@ adapts the sketch to any size of the window. Notice `()=>`, which is an arrow fu
 
 `kaleid` with a small number creates a geometric shape (in the example, an oscillator is combined with `kaleid` and `thresh`).
 
-```javascript
+```hydra
 osc(40,0).thresh().kaleid(3).out(o0)
 ```
 
@@ -53,7 +53,7 @@ Noise
 
 `noise()` is another basic function as a source. A texture is generated based on a variant of Perlin Noise.
 
-```javascript
+```hydra
 noise(10, 0).out(o0)
 ```
 
@@ -64,7 +64,7 @@ Voronoi
 
 `voronoi()` is a source to generate a Voronoi diagram.
 
-```javascript
+```hydra
 voronoi(10, 0).out(o0)
 ```
 
@@ -73,19 +73,19 @@ Shapes
 
 `shape(sides,radius,smoothing)` generates a polygon with a number of sides set by `sides`. Nevertheless, it is more than just a polygon - `radius` changes the size of the shape, and most importantly, `smoothing` sets gradient of the shape; 1 for fuzzy borders and close to 0 for sharp edges (however, setting to 0 does not work in recent versions). For example, `shape(2)` is a thick line, which can be scaled to make a thin line.
 
-```javascript
+```hydra
 shape(2).scale(0.01).out(o0)
 ```
 
 or simply,
 
-```javascript
+```hydra
 shape(2,0.0025,0.001).out(o0)
 ```
 
 By repeating `shape(4)` and overlapping them, it gives a grid-like pattern. For convenience, a parameter and a function are stored in JavaScript variables.
 
-```javascript
+```hydra
 n = 4
 a = () => shape(4,0.4).repeat(n,n)
 a().add(a().scrollX(0.5/n).scrollY(0.5/n),1).out()
@@ -93,7 +93,7 @@ a().add(a().scrollX(0.5/n).scrollY(0.5/n),1).out()
 
 Similar to `kaleid()`, `shape()` with a large number of sides creates a circle. By tweaking the example above, it generates a Polka dot pattern.
 
-```javascript
+```hydra
 n = 4
 a= () => shape(400,0.5).repeat(n,n)
 a().add(a().scrollX(0.5/n).scrollY(0.5/n),1).out()
@@ -101,7 +101,7 @@ a().add(a().scrollX(0.5/n).scrollY(0.5/n),1).out()
 
 or almost equivalent with (the center of the image will be horizontally shifted)
 
-```javascript
+```hydra
 n = 8/Math.sqrt(2)
 a = () => shape(400,0.75).repeat(n,n)
 a().rotate(Math.PI/4).out()
@@ -109,7 +109,7 @@ a().rotate(Math.PI/4).out()
 
 This tiling technique can be used to create a RGB pixel filter. In this example, `func` is decomposed into R, G, and B channels and overlaid on top of each other.
 
-```javascript
+```hydra
 n = 50;
 func = () => osc(30,0.1,1).modulate(noise(4,0.1))
 pix = () => shape(4,0.3).scale(1,1,3).repeat(n,n)
@@ -125,36 +125,36 @@ Scaling
 
 Scaling and difference can also create a periodic texture.
 
-```javascript
+```hydra
 shape(4,0.8).diff(src(o0).scale(0.9)).out(o0)
 ```
 
 This technique can also be applied to a complex texture.
 
-```javascript
+```hydra
 voronoi(10,0).diff(src(o0).scale(0.9)).out(o0)
 ```
 
 The effect can be enhanced by `thresh` and setting the third argument of `voronoi` to 0, to have sharp edges. However, a naive implementation will end up in a complete noise (notice that `thresh(threshold, tolerance)`'s `tolerance` has to be always bigger than 0).
 
-```javascript
+```hydra
 voronoi(10,0,0).thresh(0.5,0.01).diff(src(o0).scale(0.9)).out(o0)
 ```
 
 To have a desired effect, apply a square mask (before trying the next example, apply `solid().out(o0)` to clear the buffer).
 
-```javascript
+```hydra
 voronoi(10,0,0).thresh(0.5,0.01).mask(shape(4,0.8,0.01)).diff(src(o0).scale(0.9)).out(o0)
 ```
 
 This example can be used together with rotation.
 
-```javascript
+```hydra
 shape(4,0.9).diff(src(o0).scale(0.9).mask(shape(4,0.9,0.01)).rotate(0.1)).out(o0)
 ```
 
 Or, instead of `scale`, scrolling functions (`scrollX` and `scrollY`) can be used with a feedback loop.
 
-```javascript
+```hydra
 shape(4,0.7).diff(src(o0).scrollX(0.01).mask(shape(4,0.7))).out(o0)
 ```
