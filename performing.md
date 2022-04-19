@@ -15,6 +15,9 @@ There is no strict definition of live coding. [Toplap Manifesto](https://toplap.
 
 Preparing a code has an advantage of making a set or a narrative; let's take a look at an example:
 
+(note that the current embedded editor does not support "execute by line/block" - please open it in the full editor to try out)
+
+
 ```hydra
 // 1
 osc(60,0.1,1.5).modulate(o1).out(o0)

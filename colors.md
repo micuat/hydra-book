@@ -92,7 +92,7 @@ osc(200,0,1).rotate(1).layer(osc(30,0,1).luma(0.5,0.01)).out(o0)
 With the second argument of `luma`, a shadow-like effect can be created. First, turn the texture to grayscale by `saturate(0)`, then use `luma(0.2,0.2)` to create blurred boundaries, and finally `color(0,0,0,1)` to convert grayscale to an alpha mask with black color. In the example, foreground texture `f()` is defined for convenience to avoid duplication for shadow generation and foreground rendering. The shadow texture is overlaid on the background texture `osc(200,0,1)` and then the foreground texture `f()` is overlaid on the shadow texture.
 
 ```hydra
-f=()=>osc(30,0,1)
+var f=()=>osc(30,0,1)
 osc(200,0,1).rotate(1).layer(f().saturate(0).luma(0.2,0.2).color(0,0,0,1)).layer(f().luma(0.5,0.01)).out(o0)
 ```
 
@@ -177,16 +177,16 @@ In some environments, you may need to add `color(0.99,0.99,0.99)` to the intensi
 Here, we use a palette taken from [coolors.co](https://coolors.co).
 
 ```hydra
-DD=0.01
-b=(o,u,i,y,z)=>o().add(solid(1,1,1),DD).thresh(i*0.2*(z-y)+y,0.0001).luma(0.5,0.0001).color(c(u,i,0),c(u,i,1),c(u,i,2))
-c=(u,i,j)=>{
+var DD=0.01
+var b=(o,u,i,y,z)=>o().add(solid(1,1,1),DD).thresh(i*0.2*(z-y)+y,0.0001).luma(0.5,0.0001).color(c(u,i,0),c(u,i,1),c(u,i,2))
+var c=(u,i,j)=>{
   let cc = u.split("/"), cs = cc[cc.length - 1].split("-")
   return parseInt("0x" + cs[i].substring(2*j, 2+2*j))/255
 }
-colorize=(x,u,y=0,z=1)=>b(x,u,0,y,z).layer(b(x,u,1,y,z)).layer(b(x,u,2,y,z)).layer(b(x,u,3,y,z)).layer(b(x,u,4,y,z))
+var colorize=(x,u,y=0,z=1)=>b(x,u,0,y,z).layer(b(x,u,1,y,z)).layer(b(x,u,2,y,z)).layer(b(x,u,3,y,z)).layer(b(x,u,4,y,z))
 
-url='https://coolors.co/bbdef0-f08700-f49f0a-efca08-00a6a6'
-func=()=>osc(20,0,0).modulate(noise(4,0))
+var url='https://coolors.co/bbdef0-f08700-f49f0a-efca08-00a6a6'
+var func=()=>osc(20,0,0).modulate(noise(4,0))
 colorize(func,url).out()
 ```
 

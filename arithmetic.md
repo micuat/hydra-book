@@ -9,8 +9,8 @@ Normalization
 In this example, `func`'s negative value is clipped by `luma` and overlaid on a red solid texture. If `func` is normalized from 0 to 1, the resulting texture is the same as `func` as it is not affected by `luma`. However, if `func` is normalized from -1 to 1, the negative values are clipped and the magenta texture appears. `osc`, `gradient` and `voronoi` are the former (0 to 1) and `noise` is the latter (-1 to 1) as seen in the image below.
 
 ```hydra
-epsilon=0.001
-func = () => noise(4,0.1)
+var epsilon=0.001
+var func = () => noise(4,0.1)
 solid(1,0,1).layer(func().luma(-epsilon,0)).out(o0)
 ```
 
@@ -23,8 +23,8 @@ noise(4,0.1).add(solid(1,1,1),0.5).out(o0)
 Note that writing to a buffer clips negative values to 0. In fact, also values above 1 are clipped to 1. In this example, `o1` (bottom left) and `o2` (top right) show different results as `func` outputs values outside 0 to 1, but `src(o0)` only outputs values from 0 to 1; thus in the latter, the values only range from 0.5 to 1.
 
 ```hydra
-epsilon=0.001
-func = () => noise(4,0.1)
+var epsilon=0.001
+var func = () => noise(4,0.1)
 func().out(o0)
 func().add(solid(1,1,1),0.5).out(o1)
 src(o0).add(solid(1,1,1),0.5).out(o2)

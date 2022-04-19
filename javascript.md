@@ -11,7 +11,7 @@ Arrow Function
 [Arrow function](https://developer.cdn.mozilla.net/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) `=>` is an expression to define a function. It is similar to the traditional `function`; however, there are differences explained in the MDN docs in the link above. Arrow functions are often preferred in live coding because they are shorter, but in the examples below, traditional `function` can be used as well. An arrow function can be used mainly in two ways in Hydra. The first example is to use it as an alias:
 
 ```hydra
-cnoise = ()=>noise(3,0).mult(gradient().r())
+var cnoise = ()=>noise(3,0).mult(gradient().r())
 // same as
 // cnoise = ()=>{return noise(3,0).mult(gradient())}
 // or
@@ -55,8 +55,8 @@ function draw() {
 To make the variable dynamic, an arrow function can be used:
 
 ```hydra
-v0 = ()=>Math.sin(time)
-v1 = ()=>Math.cos(time)
+var v0 = ()=>Math.sin(time)
+var v1 = ()=>Math.cos(time)
 shape(3).color(v0,v1,0).out(o0)
 
 // or,

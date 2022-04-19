@@ -3,6 +3,7 @@
 ---
 
 * [Textures](textures)
+* [Geometry](geometry)
 * [Modulation](modulation)
 * [Colors](colors)
 * [Layers](layers)

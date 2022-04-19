@@ -275,8 +275,8 @@ class CodeApp extends Torus.StyledComponent {
     observer.observe(this.placeholder);
   }
   notSupportedInEmbeddedEditor() {
-    this.showNotSupportedInEmbeddedEditor = true;
-    this.render();
+    // this.showNotSupportedInEmbeddedEditor = true;
+    // this.render();
   }
   styles() {
     return css`

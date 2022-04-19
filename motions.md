@@ -25,7 +25,7 @@ osc(Math.PI*2,1,Math.PI/2).pixelate(1,1).out(o0)
 These are not particularly interesting examples. Yet, it is important to separate the characteristics in the time and spatial domains. For instance, the sine wave oscillator in the example above can be used as a fader to mix two images:
 
 ```hydra
-lfo = () => osc(Math.PI*1,1,0).pixelate(1,1)
+var lfo = () => osc(Math.PI*1,1,0).pixelate(1,1)
 shape(3).color(1,0,0).mult(lfo())
   .add(shape(4).color(0,0,1).mult(lfo().invert()),1)
   .out(o0)
@@ -42,7 +42,7 @@ shape(3).color(1,0,0)
 Visually, both examples crossfade the two shapes: a red triangle and a blue square. The key is to understand the difference between these two examples. In the first code, the two shapes are multiplied by `lfo` and `lfoInvert`, which is the inverted texture of `lfo`. This can be thought as an analogy of a layer mask with a uniform transparency in Photoshop. In the second code, an arrow function with `Math.sin` is attached to the second argument of `blend`. This is similar to setting a global opacity of the layer in Photoshop. The latter is more concise and easier to understand. However, it is spatially less flexible because the single transparency is applied to the blending operation of all the pixels. The former can be modified to add spatial oscillation, i.e., a layer mask.
 
 ```hydra
-lfo = () => osc(Math.PI*1,1,0).pixelate(10,1)
+var lfo = () => osc(Math.PI*1,1,0).pixelate(10,1)
 shape(3).color(1,0,0).mult(lfo())
   .add(shape(4).color(0,0,1).mult(lfo().invert()),1)
   .out(o0)
@@ -51,7 +51,7 @@ shape(3).color(1,0,0).mult(lfo())
 Beyond image blending, LFOs can be used for other several operations. An example is `pixelate`. To change the argument of `pixelate` in time, one might use an arrow function:
 
 ```hydra
-lfo = () => (Math.sin(time*Math.PI) * 0.5 + 0.5) * 4 + 4
+var lfo = () => (Math.sin(time*Math.PI) * 0.5 + 0.5) * 4 + 4
 osc(10,0,1).pixelate(lfo,lfo).out(o0)
 ```
 
@@ -98,13 +98,13 @@ osc(10,0,1).modulatePixelate(osc(1,1,0).pixelate(1,1).posterize(16,1).color(4,4)
 An analogy in math functions is `Math.floor`:
 
 ```hydra
-lfo = () => Math.floor((Math.sin(time) * 0.5 + 0.5) * 8) + 1
+var lfo = () => Math.floor((Math.sin(time) * 0.5 + 0.5) * 8) + 1
 osc(10,0,1).pixelate(lfo,lfo).out(o0)
 ```
 
 and similarly achieved by the JavaScript array extension in Hydra:
 
 ```hydra
-lfo = [1,2,3,4].fast(2)
+var lfo = [1,2,3,4].fast(2)
 osc(10,0,1).pixelate(lfo,lfo).out(o0)
 ```

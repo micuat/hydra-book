@@ -86,75 +86,36 @@ shape(2,0.0025,0.001).out(o0)
 By repeating `shape(4)` and overlapping them, it gives a grid-like pattern. For convenience, a parameter and a function are stored in JavaScript variables.
 
 ```hydra
-n = 4
-a = () => shape(4,0.4).repeat(n,n)
+var n = 4
+var a = () => shape(4,0.4).repeat(n,n)
 a().add(a().scrollX(0.5/n).scrollY(0.5/n),1).out()
 ```
 
 Similar to `kaleid()`, `shape()` with a large number of sides creates a circle. By tweaking the example above, it generates a Polka dot pattern.
 
 ```hydra
-n = 4
-a= () => shape(400,0.5).repeat(n,n)
+var n = 4
+var a = () => shape(400,0.5).repeat(n,n)
 a().add(a().scrollX(0.5/n).scrollY(0.5/n),1).out()
 ```
 
 or almost equivalent with (the center of the image will be horizontally shifted)
 
 ```hydra
-n = 8/Math.sqrt(2)
-a = () => shape(400,0.75).repeat(n,n)
+var n = 8/Math.sqrt(2)
+var a = () => shape(400,0.75).repeat(n,n)
 a().rotate(Math.PI/4).out()
 ```
 
 This tiling technique can be used to create a RGB pixel filter. In this example, `func` is decomposed into R, G, and B channels and overlaid on top of each other.
 
 ```hydra
-n = 50;
-func = () => osc(30,0.1,1).modulate(noise(4,0.1))
-pix = () => shape(4,0.3).scale(1,1,3).repeat(n,n)
+var n = 50;
+var func = () => osc(30,0.1,1).modulate(noise(4,0.1))
+var pix = () => shape(4,0.3).scale(1,1,3).repeat(n,n)
 pix().mult(func().color(1,0,0).pixelate(n,n)).out(o1)
 pix().mult(func().color(0,1,0).pixelate(n,n)).scrollX(1/n/3).out(o2)
 pix().mult(func().color(0,0,1).pixelate(n,n)).scrollX(2/n/3).out(o3)
 
 solid().add(src(o1),1).add(src(o2),1).add(src(o3),1).out(o0)
-```
-
-Scaling
---------
-
-Scaling and difference can also create a periodic texture.
-
-```hydra
-shape(4,0.8).diff(src(o0).scale(0.9)).out(o0)
-```
-
-This technique can also be applied to a complex texture.
-
-```hydra
-voronoi(10,0).diff(src(o0).scale(0.9)).out(o0)
-```
-
-The effect can be enhanced by `thresh` and setting the third argument of `voronoi` to 0, to have sharp edges. However, a naive implementation will end up in a complete noise (notice that `thresh(threshold, tolerance)`'s `tolerance` has to be always bigger than 0).
-
-```hydra
-voronoi(10,0,0).thresh(0.5,0.01).diff(src(o0).scale(0.9)).out(o0)
-```
-
-To have a desired effect, apply a square mask (before trying the next example, apply `solid().out(o0)` to clear the buffer).
-
-```hydra
-voronoi(10,0,0).thresh(0.5,0.01).mask(shape(4,0.8,0.01)).diff(src(o0).scale(0.9)).out(o0)
-```
-
-This example can be used together with rotation.
-
-```hydra
-shape(4,0.9).diff(src(o0).scale(0.9).mask(shape(4,0.9,0.01)).rotate(0.1)).out(o0)
-```
-
-Or, instead of `scale`, scrolling functions (`scrollX` and `scrollY`) can be used with a feedback loop.
-
-```hydra
-shape(4,0.7).diff(src(o0).scrollX(0.01).mask(shape(4,0.7))).out(o0)
 ```
