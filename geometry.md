@@ -70,7 +70,17 @@ solid().add(src(o1),1).add(src(o2),1).add(src(o3),1).out(o0)
 Kaleid
 --------
 
-We already saw [`kaleid`](textures?id=oscillator) ealier, but let's try to understand it further. 
+We already saw [`kaleid`](textures?id=oscillator) ealier, but let's try to understand it further. Take a look at this example:
+
+```hydra
+gradient().pixelate(8,8).kaleid(4).out()
+//gradient().out()
+```
+
+You can see that the red color (and black color) is dominant, which is the color appears mostly at the top of `gradient()`. We can say that the way how `kaleid` works is that it chops off the top part of the image, duplicates it and aligns them like a triangle fan. 
+
+Here's an approach to make rays from the center:
+
 
 ```hydra
 var k = 16
@@ -80,7 +90,7 @@ shape(2,d).scrollY(d/2).rotate(Math.atan2(d,1))
   .kaleid(k).out()
 ```
 
-Scaling
+Scaling and Feedback
 --------
 
 Scaling and difference can also create a periodic texture.
