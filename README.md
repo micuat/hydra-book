@@ -16,6 +16,7 @@ Important Notes
 
 You are redirected to [hydra-book.glitch.me](https://hydra-book.glitch.me/), which is the latest version of Hydra Book. While I'm sloppy about updating the Github repository, if you find any problems feel free to report on [Github issue page](https://github.com/micuat/hydra-book/issues).
 
+*NEW*: you can edit the code in the embedded editor and press `shift+enter`, `ctrl+enter` or `ctrl+shift+enter` to evaluate the code. Currently evaluate line/block is not supported.
 
 Preface
 --------
@@ -53,6 +54,7 @@ Table of Contents
 Understanding Hydra:
 
 * [Textures](textures)
+* [Geometry](geometry)
 * [Modulation](modulation)
 * [Colors](colors)
 * [Layers](layers)
