@@ -7,6 +7,51 @@ setFunction
 A custom GLSL function can be defined using `setFunction()`. The structure follows the format of [builtin functions](https://github.com/ojack/hydra-synth/blob/master/src/glsl/glsl-functions.js). Defining a custom GLSL function does not mean that you are allowed to design an arbitrary function; the function has to have specific inputs and an output, based on its type. The types are `src` `color` `combine` `combineCoords`.
 
 
+Scale and Rotate
+--------
+
+Let's take a look at this example, trying to scale a pattern and then rotate using `modulateScale` and `modulateRotate`.
+
+
+```hydra
+osc(60,.01)
+  .modulateScale(noise(3).thresh(0,0), 1,1)
+  .modulateRotate(noise(3).thresh(0,0), Math.PI/2)
+  .out(o0)
+```
+
+While both modulateXX use `noise` as a modulator, you can find that the result has weird boundaries. To apply scaling and rotation altogether, you need a custom function:
+
+```hydra
+setFunction({
+  name: 'modulateSR',type: 'combineCoord',
+  inputs: [
+    {
+      type: 'float',name: 'multiple',default: 1,
+    },
+    {
+      type: 'float',name: 'offset',default: 1,
+    },
+    {
+      type: 'float',name: 'rotateMultiple',default: 1,
+    },
+    {
+      type: 'float',name: 'rotateOffset',default: 1,
+    }
+  ],
+  glsl:
+`   vec2 xy = _st - vec2(0.5);
+   float angle = rotateOffset + _c0.z * rotateMultiple;
+   xy = mat2(cos(angle),-sin(angle), sin(angle),cos(angle))*xy;
+   xy*=(1.0/vec2(offset + multiple*_c0.r, offset + multiple*_c0.g));
+   xy+=vec2(0.5);
+   return xy;`
+})
+osc(60,.01)
+  .modulateSR(noise(3).thresh(0,0), 1,1,Math.PI/2)
+  .out(o0)
+```
+
 Chroma Key
 --------
 
