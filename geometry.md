@@ -79,6 +79,17 @@ gradient().pixelate(8,8).kaleid(4).out()
 
 You can see that the red color (and black color) is dominant, which is the color appears mostly at the top of `gradient()`. We can say that the way how `kaleid` works is that it chops off the top part of the image, duplicates it and aligns them like a triangle fan. 
 
+```hydra
+var k = 16
+var d = Math.PI/2/k
+shape(2,d).scrollY(d).rotate(Math.atan2(d,1))
+  .scrollY(-d/2-.5)
+  .mask(shape(1,0).invert())
+  .out()
+```
+
+Indeed, the thin top part indicated in white is the only part that appears after `kaleid` (in this case with argument k = 16. Try with different k values!).
+
 Here's an approach to make rays from the center:
 
 
