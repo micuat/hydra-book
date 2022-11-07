@@ -80,11 +80,11 @@ gradient().pixelate(8,8).kaleid(4).out()
 You can see that the red color (and black color) is dominant, which is the color appears mostly at the top of `gradient()`. We can say that the way how `kaleid` works is that it chops off the top part of the image, duplicates it and aligns them like a triangle fan. 
 
 ```hydra
-var k = 16
-var d = Math.PI/2/k
-shape(2,d).scrollY(d).rotate(Math.atan2(d,1))
+var k = 8
+var d = Math.PI/k
+shape(2,d,0).scrollY(d/2).rotate(Math.atan2(d,1))
   .scrollY(-d/2-.5)
-  .mask(shape(1,0).invert())
+  .mask(shape(1,0,0).invert().rotate(Math.PI/4)) // for demo purpose... not compatible with k<4
   .out()
 ```
 
@@ -96,7 +96,7 @@ Here's an approach to make rays from the center:
 ```hydra
 var k = 16
 var d = Math.PI/2/k
-shape(2,d).scrollY(d/2).rotate(Math.atan2(d,1))
+shape(2,d,0).scrollY(d/2).rotate(Math.atan2(d,1))
   .scrollY(-d/2-.5)
   .kaleid(k).out()
 ```
