@@ -148,7 +148,7 @@ Scaling with a value smaller than 1 will shrink the texture, and if it is combin
 shape(999).repeat(1,1).modulateScale(noise(8,0).pixelate(8,8).add(solid(1,1)).color(.5,.5).posterize(4,1),-1.3,1).out(o0)
 ```
 
-The idea is that `repeat(1,1)` makes sure that the shape does not end up with a lonely small shape when shrunk, but will be tiled. Inside `modulateScale`, there is a long function but the point is to normalize `noise` value from [-1, 1] to [0, 1] then pass it to `posterize()`. Since `posterize()` always returns a value less than 1, 
+The idea is that `repeat(1,1)` makes sure that the shape does not end up with a lonely small shape when shrunk, but will be tiled. Inside `modulateScale`, there is a long function but the point is to normalize `noise` value from [-1, 1] to [0, 1] then pass it to `posterize()`. `posterize()` always returns a value less than 1: in this case, [0, 0.75]. So the scaling factor here is -1.3, slightly smaller than -1 to emphasize the scaling effect.
 
 modulatePixelate
 --------
