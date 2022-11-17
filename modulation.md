@@ -108,6 +108,8 @@ render()
 modulateScale
 --------
 
+### Basics
+
 `modulateScale` is a variant of `modulate`. The original `modulate` translates the texture coordinate by `(r, g)` which is the color of modulating texture; `modulateScale` scales the pixel position by `(r, g)`. Simply applying `modulateScale` can create huge distortion, which is pleasant as it is, but you can extend your repertoire by understanding the behavior of `modulateScale`. For example, modulating a high frequency oscillator by a low frequency oscillator can create the following distortion. Note that `modulateScrollX` achieves a similar effect; nevertheless, scrolling involve texture wrapping which creates a discontinuity unlike scaling.
 
 ```hydra
@@ -138,6 +140,15 @@ To make the effect clearer, use `pixelate` to the "modulator" function (inside `
 shape(4).modulateScale(noise(8,0).pixelate(2,2)).out(o0)
 ```
 
+### Application for Repetition
+
+Scaling with a value smaller than 1 will shrink the texture, and if it is combined with `repeat`, the texture ends up with repetition.
+
+```hydra
+shape(999).repeat(1,1).modulateScale(noise(8,0).pixelate(8,8).add(solid(1,1)).color(.5,.5).posterize(4,1),-1.3,1).out(o0)
+```
+
+The idea is that `repeat(1,1)` makes sure that the shape does not end up with a lonely small shape when shrunk, but will be tiled. Inside `modulateScale`, there is a long function but the point is to normalize `noise` value from [-1, 1] to [0, 1] then pass it to `posterize()`. Since `posterize()` always returns a value less than 1, 
 
 modulatePixelate
 --------
