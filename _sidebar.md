@@ -17,7 +17,7 @@
 * [JavaScript Tips](javascript)
 * [Embed Hydra in Webpage](embed)
 * [Performing with Hydra](performing)
-* [100 Questions](100 Questions)
+* [100 Questions](100questions)
 
 ---
 

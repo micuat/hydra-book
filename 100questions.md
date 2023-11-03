@@ -1,4 +1,4 @@
-100 Questions! (to be continued)
+100 Questions!
 ========
 
 How can I draw a circle?
