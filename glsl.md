@@ -91,6 +91,17 @@ osc(30, 0, 1).layer(src(o0).chroma()).out(o1)
 render()
 ```
 
+And another version that returns a mask:
+
+```hydra
+setFunction({name:'chr',type:'color',inputs:[],glsl:`float m=max(_c0.r,_c0.b);float d=_c0.g;_c0.g=min(_c0.g,m*.8);_c0+=vec4(d-_c0.g);return vec4(1.-clamp((_c0.g-m)*5.,.0,1.));`})
+// s0.initCam()
+// src(s0).out(o0)
+solid(0,1,0).layer(shape(5,0.3,0.3).luma()).out(o0)
+osc(30, 0, 1).layer(src(o0).mask(src(o0).chr().thresh(.5,0))).out(o1)
+render()
+```
+
 Ray Marching
 --------
 
