@@ -14,7 +14,9 @@ render()
 Important Notes
 --------
 
-You are redirected to [hydra-book.glitch.me](https://hydra-book.glitch.me/), which is the latest version of Hydra Book. While I'm sloppy about updating the Github repository, if you find any problems feel free to report on [Github issue page](https://github.com/micuat/hydra-book/issues).
+June 24, 2025: Since glitch is retiring, I moved this online book to GitHub. The new URL is https://hydra-book.glitches.me/ (this website) and it is hosted by GitHub: https://github.com/micuat/hydra-book.
+
+<del>You are redirected to [hydra-book.glitch.me](https://hydra-book.glitch.me/), which is the latest version of Hydra Book. While I'm sloppy about updating the Github repository, if you find any problems feel free to report on [Github issue page](https://github.com/micuat/hydra-book/issues). </del>
 
 *NEW*: you can edit the code in the embedded editor and press `shift+enter`, `ctrl+enter` or `ctrl+shift+enter` to evaluate the code. Currently evaluate line/block is not supported.
 
